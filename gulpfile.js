@@ -47,14 +47,14 @@ gulp.task("browserSync", function(){
 gulp.task("watch", ["fileinclude", "browserSync", "sass"], function(){
 	gulp.watch($app+"/scss/**/*.scss", ["sass"]);
 	gulp.watch($app+"/*.html", ["fileinclude"]);
-	gulp.watch($app+"/partials/*.html", ["fileinclude"]);
+	gulp.watch($app+"/modules/**/*.html", ["fileinclude"]);
 	gulp.watch($app+"/preview/*.html", browserSync.reload);//on ne recharge que les preview
-	gulp.watch($app+"/js/**/*.js", browserSync.reload);    
+	gulp.watch($app+"/modules/**/*.js", browserSync.reload);    
     });
 
 //minification
 gulp.task("minify", function(){
-	return gulp.src($app+"/preview/*.html")
+	return gulp.src($app+"/modules/**/*.html")
 	    .pipe(useref())
 	    .pipe(gulpIf("*.js", uglify()))
 	    .pipe(gulpIf("*.css", minifyCSS()))
@@ -63,7 +63,7 @@ gulp.task("minify", function(){
 	    });
 
 gulp.task("useref", function(){
-	return gulp.src($app+"/preview/*.html")
+	return gulp.src($app+"/modules/**/*.html")
 	    .pipe(useref())
 	    .pipe(gulp.dest($dist))
 	    .pipe( notify({ message : "Les fichiers css et js sont copiés" }))
@@ -97,14 +97,14 @@ gulp.task("clean", function(callback){
     });
 
 gulp.task("fileinclude", function(){
-	gulp.src([$app+"/*.html", "!"+$app+"/credit-immo.html"])
-	    .pipe(fileinclude({
-			prefix:"@@",
-			    basepath:"@file"
-			    }))
-	    .pipe(gulp.dest($app+"/preview/"))
-	    .pipe( notify({ message : "La page html a été recompilée" }))
-	    })
+       gulp.src([$app+"/*.html"])
+          .pipe(fileinclude({
+                       prefix:"@@",
+                           basepath:"@file"
+                           }))
+           .pipe(gulp.dest($app+"/preview/"))
+           .pipe( notify({ message : "La page html a été recompilée" }))
+           })
 
     gulp.task("build", function(callback){
 	    runSequence("clean",
@@ -115,5 +115,5 @@ gulp.task("fileinclude", function(){
 	});
 
 gulp.task("default", function(callback){
-	runSequence(["sass", "fileinclude", "browserSync", "watch"], callback);
+	runSequence(["sass", "browserSync", "watch"], callback);
     });
