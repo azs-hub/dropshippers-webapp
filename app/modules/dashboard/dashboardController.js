@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('wecommerceApp')
-  .controller('AuthController',
+  .controller('HomeController',
     ['$scope', '$state',
       function ($scope, $state) {
-        $scope.login = function () {
-          $state.go('dashboard');
-        };   
+        
       }
     ]
   );

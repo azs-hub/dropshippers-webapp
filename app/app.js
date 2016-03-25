@@ -1,24 +1,35 @@
 'use strict';
 
-angular
-    .module('wecommerce', [
-        'restangular'])
+angular.module('wecommerceApp', [
+    'ui.router',
+    'restangular',
+    'ngLodash'])
 
-    .config( ['$urlRouterProvider',
-        function($urlRouterProvider) {
+    .config( ['RestangularProvider', '$stateProvider', '$urlRouterProvider',
+        function(RestangularProvider, $stateProvider, $urlRouterProvider) {
 
-            console.log('toto');
+            console.log('config');
 
-            /*(RestangularProvider.setBaseUrl('/api/v1');
+            RestangularProvider.setBaseUrl('/api/v1');
 
-            $urlRouterProvider.otherwise('/login');
+            $urlRouterProvider.otherwise('/');
 
             $stateProvider
               .state('login', {
                 url: '/login',
                 templateUrl: 'modules/auth/login.html',
                 controller: 'AuthController'
-              });*/
+              })
+              .state('home', {
+                url: '/',
+                templateUrl: 'modules/home/index.html',
+                controller: 'HomeController'
+              })
+              .state('dashboard', {
+                url: '/',
+                templateUrl: 'modules/dashboard/index.html',
+                controller: 'DashboardController'
+              });
 
 
             // $routeProvider

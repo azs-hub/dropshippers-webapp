@@ -5,16 +5,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>DropShippers.io</title>
 </head>
-<body>
+<body x-ng-app="wecommerceApp">
 <h1> Bienvenue sur DropShippers.io </h1>
 
+<div ui-view></div>
+
 <script text="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+<script text="text/javascript" src="bower_components/ng-lodash/build/ng-lodash.min.js"></script>
 <script text="text/javascript" src="bower_components/restangular/dist/restangular.min.js"></script>
+<script text="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
 
 <script text="text/javascript" src="app.js"></script>
+<script text="text/javascript" src="modules/home/homeController.js"></script>
+<script text="text/javascript" src="modules/dashboard/dashboardController.js"></script>
 <script text="text/javascript" src="modules/auth/authController.js"></script>
-
-
 </body>
 </html>
