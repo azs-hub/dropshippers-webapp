@@ -2,12 +2,18 @@
 
 angular.module('wecommerceApp')
   .controller('AuthController',
-    ['$scope', '$state',
-      function ($scope, $state) {
+    ['$scope', '$state', 'Auth',
+      function ($scope, $state, Auth) {
+
         $scope.login = function () {
-          $state.go('dashboard');
+          Auth.login($scope.user);
+          $state.go('user.dashboard');
         };
-        $scope.Password = 'password';
+
+        $scope.logout = function () {
+          Auth.logout($scope.user);
+          $state.go('anon.home');
+        };
       }
     ]
   );
