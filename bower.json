@@ -17,7 +17,7 @@
     "jquery": "^2.2.0",
     "font-awesome": "fontawesome#^4.5.0",
     "angular-ui-calendar": "^1.0.1",
-    "angular-material": "^1.0.5",
+    "angular-material": "~1.0.7",
     "lodash": "^4.5.1",
     "restangular": "~1.5.2",
     "ng-lodash": "~0.4.0"

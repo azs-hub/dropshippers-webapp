@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wecommerceApp')
-  .controller('HomeController',
+  .controller('DashboardController',
     ['$scope', '$state',
       function ($scope, $state) {
         

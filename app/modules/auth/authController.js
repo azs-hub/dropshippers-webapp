@@ -6,7 +6,8 @@ angular.module('wecommerceApp')
       function ($scope, $state) {
         $scope.login = function () {
           $state.go('dashboard');
-        };   
+        };
+        $scope.Password = 'password';
       }
     ]
   );

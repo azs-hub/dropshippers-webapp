@@ -1,0 +1,27 @@
+  <div ng-controller="AuthController" layout="column" layout-padding="" ng-cloak="" class="inputdemoIcons" ng-app="MyApp">
+
+  <br>
+  <md-content class="md-no-momentum">
+    <md-input-container class="md-icon-float md-block">
+      <label>Name</label>
+      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+      <input ng-model="user.name" type="text">
+    </md-input-container>
+
+    <md-input-container md-no-float="" class="md-block">
+      <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+      <input ng-model="user.phone" type="text" placeholder="Phone Number">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+      <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="company"></md-icon>
+      <input ng-model="user.company" type="company" placeholder="Company (required)" ng-required="true">
+    </md-input-container>
+  </md-content>
+
+</div>
