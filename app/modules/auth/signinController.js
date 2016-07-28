@@ -2,12 +2,17 @@
 
 angular.module('wecommerceApp')
   .controller('SigninController',
-    ['$scope', '$state',
-      function ($scope, $state) {
-        $scope.signin = function (user) {
-        	console.log(user);
-        	if (user)
-          	$state.go('dashboard');
+    ['$scope', '$state', 'AuthService',
+      function ($scope, $state, AuthService) {
+        $scope.user = {};
+        $scope.signin = function () {
+        	console.log($scope.user);
+          AuthService.register($scope.user);
+          /*.then(function (res){
+            console.log("signinController : ", res);
+          });*/
+        	/*if (user)
+          	$state.go('dashboard');*/
         };   
       }
     ]

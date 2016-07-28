@@ -1,18 +1,22 @@
 'use strict';
 
 angular.module('wecommerceApp', [
+    'local.config',
     'ui.router',
     'restangular',
     'ngMaterial',
     'ngAnimate',
     'ngAria',
-    'ngLodash'])
-    .config( ['RestangularProvider', '$stateProvider', '$urlRouterProvider',
-        function(RestangularProvider, $stateProvider, $urlRouterProvider) {
-
-            RestangularProvider.setBaseUrl('/api/v1');
-
+    'ngLodash',
+    'satellizer'])
+    .config( ['$stateProvider', '$urlRouterProvider', '$authProvider', 'BASE_URL_API',
+        function($stateProvider, $urlRouterProvider, $authProvider, BASE_URL_API) {
             $urlRouterProvider.otherwise('/');
+            
+            $authProvider.baseUrl = BASE_URL_API;
+            $authProvider.loginUrl = "login/signin";
+            $authProvider.tokenName = "token";
+            $authProvider.authHeader = "auth-token";
 
             $stateProvider
               .state('login', {

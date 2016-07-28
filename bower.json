@@ -20,7 +20,8 @@
     "angular-material": "~1.0.7",
     "lodash": "^4.5.1",
     "restangular": "~1.5.2",
-    "ng-lodash": "~0.4.0"
+    "ng-lodash": "~0.4.0",
+    "satellizer": "^0.15.4"
   },
   "resolutions": {
     "angular": "~1.3"
