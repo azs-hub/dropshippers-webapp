@@ -1,0 +1,19 @@
+<div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-align="center">
+    <div>
+      <md-input-container>
+        <label>Login</label>
+        <input type="text" name="login" ng-model="user.username"/>
+      </md-input-container>
+
+      <md-input-container>
+  			<input type="Password" placeholder="Password" ng-model="user.password"/>
+      </md-input-container>
+    </div>
+  </md-content>
+	<md-content>
+    <section layout="row" layout-sm="column" layout-align="center" layout-wrap="">
+      <md-button md-no-ink="" class="md-primary" ng-click="login()">Connexion</md-button>
+    </section>
+  </md-content>
+</div>

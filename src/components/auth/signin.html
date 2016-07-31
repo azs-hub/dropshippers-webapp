@@ -1,0 +1,32 @@
+  <div layout="column" layout-padding="" ng-cloak="" class="inputdemoIcons">
+
+  <br>
+  <md-content class="md-no-momentum">
+    <md-input-container class="md-icon-float md-block">
+      <label>Username</label>
+      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+      <input ng-model="user.username" type="text">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+      <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="password"></md-icon>
+      <input ng-model="user.password" type="password" placeholder="password (required)" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="shop_name"></md-icon>
+      <input ng-model="user.shop_name" type="shop_name" placeholder="shop_name" ng-required="true">
+    </md-input-container>
+    
+    <md-input-container class="md-block">
+      <md-button class="md-raised md-primary" type="button" ng-click="signin()">Inscription</md-button>
+    </md-input-container>
+
+  </md-content>
+
+</div>
