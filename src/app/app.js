@@ -2,6 +2,9 @@
 
 angular.module('dropshippers', [
     'local.config',
+    'profile',
+    'auth',
+    'product',
     'ui.router',
     'ngMaterial',
     'ngAnimate',

@@ -1,7 +1,5 @@
-'use strict';
-
 angular.module('profile.service', [])
-  .factory('ProfileService',
+  .service('ProfileService',
     ['$q', '$log', '$http', 'BASE_URL_API',
     function ($q, $log, $http, BASE_URL_API) {
       // var self = this;

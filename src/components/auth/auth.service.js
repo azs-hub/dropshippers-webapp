@@ -1,7 +1,5 @@
-'use strict';
-
-angular.module('dropshippers')
-  .factory('AuthService',
+angular.module('auth.service', [])
+  .service('AuthService',
     ['$q', '$log', '$http', 'BASE_URL_API',
     function ($q, $log, $http, BASE_URL_API) {
       // var self = this;

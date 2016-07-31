@@ -1,5 +1,3 @@
-angular.module('ds.profile', [
-  'profile.service',
-  'auth.controller',
-  'signin.controller'
+angular.module('profile', [
+  'profile.service'
 ]);
