@@ -1,4 +1,11 @@
 Présentation du Site
 
-<a ui-sref="login">Se connecter</a>
-<a ui-sref="signin">S'inscrire</a>
+<div ng-if="!user.isAuth">
+	<a ui-sref="login">Se connecter</a>
+	<a ui-sref="signin">S'inscrire</a>
+</div>>
+
+<div ng-if="user.isAuth">
+	{{products}}
+</div>
+
