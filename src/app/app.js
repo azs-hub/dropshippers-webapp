@@ -3,6 +3,7 @@
 angular.module('dropshippers', [
     'local.config',
     'profile',
+    'proposition',
     'auth',
     'product',
     'ui.router',
@@ -78,8 +79,10 @@ angular.module('dropshippers', [
                 controller: 'ProductController',
                 resolve: {
                   product: function($stateParams, ProductService) {
-                    console.log('OKE');
-                    return ProductService.getProduct($stateParams.id);
+                    return ProductService.getProduct($stateParams.id).then(function(res) {
+                      console.log('OKE', res.data);
+                      return res.data;
+                    });
                   }
                 }
               });
