@@ -2,8 +2,8 @@
 
 angular.module('dropshippers')
   .controller('AuthController',
-    ['$scope', '$state', '$auth', 'AuthService',
-      function ($scope, $state, $auth, AuthService) {
+    ['$scope', '$state', '$auth', '$mdToast', 'AuthService',
+      function ($scope, $state, $auth, $mdToast, AuthService) {
         $scope.user = null;
         $scope.login = function () {
           if ($scope.user != null) 
@@ -14,8 +14,18 @@ angular.module('dropshippers')
                 {
                   console.log("then",response);
                   $auth.setToken(response);
+                  $state.go('home')
                 }
-                console.log("status not 200");
+                else {
+                  $mdToast.show(
+                    $mdToast.simple()
+                      .textContent('Bad credidential!')
+                      
+                      .hideDelay(3000)
+                  );
+                  // material not good
+                }
+                //console.log("status not 200");
                 
               });
           }
