@@ -11,8 +11,10 @@ angular.module('dropshippers')
 
         if ($auth.isAuthenticated()) {
         	ProductService.getProducts().then(function(res) {
-        		$scope.products = res;
+            $scope.products = res.products;
+            console.log(res);
         	});
+
 	    }
       }
     ]

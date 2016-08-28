@@ -54,23 +54,33 @@ angular.module('dropshippers', [
             $stateProvider
               .state('login', {
                 url: '/login',
-                templateUrl: 'components/auth/login.html',
+                templateUrl: 'app/auth/login.html',
                 controller: 'AuthController'
               })
               .state('home', {
                 url: '/',
-                templateUrl: 'components/home/index.html',
+                templateUrl: 'app/home/index.html',
                 controller: 'HomeController'
               })
               .state('dashboard', {
                 url: '/dashboard',
-                templateUrl: 'components/dashboard/index.html',
+                templateUrl: 'app/dashboard/index.html',
                 controller: 'DashboardController'
               })
               .state('signin', {
                 url: '/signin',
-                templateUrl: 'components/auth/signin.html',
+                templateUrl: 'app/auth/signin.html',
                 controller: 'SigninController'
+              })
+              .state('detailProduct', {
+                url: '/product/:id',
+                templateUrl: 'app/product/product.html',
+                controller: 'ProductController',
+                resolve: {
+                  product: function($stateParams, ProductService) {
+                    return ProductService.getProduct($stateParams.id);
+                  }
+                }
               });
     }])
     .run( ['$rootScope',

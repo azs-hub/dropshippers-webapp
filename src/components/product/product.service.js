@@ -19,15 +19,11 @@ angular.module('product.service', [])
               return response;
             });
         },
-        login: function(datas) {
-          $log.debug('Auth:login', datas);
+        getProduct: function(id) {
+          $log.debug('Product:getProduct', id);
           return $http({
-            method: 'POST',
-            url: BASE_URL_API + 'login/signin',
-            params: {
-              username: datas.username,
-              password: datas.password
-            }
+            method: 'GET',
+            url: BASE_URL_API + 'front/common/products/'+ id
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);
               return response;
