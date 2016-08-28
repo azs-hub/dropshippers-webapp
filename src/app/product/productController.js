@@ -2,18 +2,18 @@
 
 angular.module('dropshippers')
   .controller('ProductController',
-    ['$scope', '$state', '$auth', 'product', 
-      function ($scope, $state, $auth, product) {
-      	$scope.products = {};
+    ['$scope', '$auth', 'product', 
+      function ($scope, $auth, product) {
       	$scope.user = {
       		isAuth: $auth.isAuthenticated()
       	};
 
-        console.log(product);
+        $scope.product = product.data.product;
+        console.log('-------------->', product);
 
       //   if ($auth.isAuthenticated()) {
-      //   	ProductService.getProducts().then(function(res) {
-      //       $scope.products = res.products;
+      //   	ProductService.getProduct(product.dropshippers_ref).then(function(res) {
+      //       $scope.product = res.product;
       //       console.log(res);
       //   	});
 

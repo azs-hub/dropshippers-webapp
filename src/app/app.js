@@ -78,6 +78,7 @@ angular.module('dropshippers', [
                 controller: 'ProductController',
                 resolve: {
                   product: function($stateParams, ProductService) {
+                    console.log('OKE');
                     return ProductService.getProduct($stateParams.id);
                   }
                 }
