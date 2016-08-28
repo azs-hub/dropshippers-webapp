@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('dropshippers')
+angular.module('product.controller', ['proposition.service'])
   .controller('ProductController',
-    ['$scope', '$auth', 'product', 
-      function ($scope, $auth, product) {
+    ['$scope', '$auth', 'product', 'PropositionService',
+      function ($scope, $auth, product, PropositionService) {
       	$scope.user = {
       		isAuth: $auth.isAuthenticated()
       	};
@@ -11,13 +11,11 @@ angular.module('dropshippers')
         $scope.product = product.data.product;
         console.log('-------------->', product);
 
-      //   if ($auth.isAuthenticated()) {
-      //   	ProductService.getProduct(product.dropshippers_ref).then(function(res) {
-      //       $scope.product = res.product;
-      //       console.log(res);
-      //   	});
-
-	     // }
+        $scope.props = function () {
+          PropositionService.addProposition($scope.product.dropshippers_ref).then(function(res) {
+            console.log(res);
+          });
+        }
       }
     ]
   );
