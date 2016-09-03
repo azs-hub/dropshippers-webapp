@@ -13,6 +13,17 @@ angular.module('dropshippers', [
     'ngLodash',
     'satellizer'])
 
+    .config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('teal', {
+                'default': '500',
+                'hue-1':   '200'
+            })
+            .accentPalette('amber', {
+                'default': 'A400'
+            });
+    })
+
     .factory('SatellizerInterceptor', [
       '$q',
       'SatellizerConfig',
@@ -43,15 +54,13 @@ angular.module('dropshippers', [
     .config( ['$stateProvider', '$urlRouterProvider', '$authProvider', 'BASE_URL_API',
         function($stateProvider, $urlRouterProvider, $authProvider, BASE_URL_API) {
             $urlRouterProvider.otherwise('/');
-            
+
             $authProvider.baseUrl = BASE_URL_API;
             $authProvider.loginUrl = "login/signin";
             $authProvider.tokenName = "token";
             $authProvider.authHeader = "token";
             $authProvider.tokenHeader = "token";
 
-            console.log('ANAIS');
-            
             $stateProvider
               .state('login', {
                 url: '/login',
