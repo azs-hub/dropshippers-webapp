@@ -1,6 +1,5 @@
-<div ng-if="!user.isAuth">
-	<a ui-sref="login">Se connecter</a>
-	<a ui-sref="signin">S'inscrire</a>
+<div ng-if="!user.isAuth" ng-include="'app/home/homepage.html'">
+	
 </div>
 
 <div ng-if="user.isAuth">

@@ -12,6 +12,7 @@ angular.module('navbar.controller', [])
 
         	$scope.logout = function () {
         		$auth.logout();
+        		$state.go('home');
         	}
 
         	
