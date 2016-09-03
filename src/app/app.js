@@ -78,11 +78,15 @@ angular.module('dropshippers', [
                 templateUrl: 'app/dashboard/index.html',
                 controller: 'DashboardController'
               })
-              .state('signin', {
-                url: '/signin',
-                templateUrl: 'app/auth/signin.html',
-                controller: 'SigninController'
-              })
+                .state('signin', {
+                    url: '/signin',
+                    templateUrl: 'app/auth/signin.html',
+                    controller: 'SigninController'
+                })
+                .state('about', {
+                    url: '/about',
+                    templateUrl: 'app/about/about.html'
+                })
               .state('detailProduct', {
                 url: '/product/:id',
                 templateUrl: 'app/product/product.html',
