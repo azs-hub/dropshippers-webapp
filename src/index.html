@@ -24,7 +24,7 @@
 </head>
 <body x-ng-app="dropshippers">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
+    <div class="col-xs-10 col-xs-offset-1 mgB30">
       <md-toolbar ng-controller="NavbarController">
         <div class="md-toolbar-tools" id="main-navbar">
           <a ui-sref="home">
@@ -54,7 +54,7 @@
             <md-button class="main-navbar--link-primary disconnect-button-shop" ng-show="isAuthenticated">
               Shop name
             </md-button>
-            <md-button ui-sref="signin" class="button-link disconnect-button-logout">
+            <md-button ng-click="logout()" class="button-link disconnect-button-logout">
               Se déconnecter
             </md-button>
           </md-input-container>
@@ -83,7 +83,11 @@
 
   <!-- inject-string:config -->
 
-  <div ui-view></div>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div ui-view></div>
+    </div>
+  </div>
 
   <div class="footer">
     <div class="row content">

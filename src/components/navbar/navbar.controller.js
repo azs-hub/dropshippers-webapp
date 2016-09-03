@@ -10,5 +10,9 @@ angular.module('navbar.controller', [])
         		return false;
         	}
 
+        	$scope.logout = function () {
+        		$auth.logout();
+        	}
+
         	
         }]);

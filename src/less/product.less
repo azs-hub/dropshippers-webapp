@@ -1,14 +1,86 @@
 @import "general.less";
 
-.product-list {
-	.md-card-image {
-		height: 200px;
-		overflow: hidden;
 
-		img {
-			position: relative;
-			top: -20px;
-			min-height: 220px;
+.product-list-item {
+
+	margin-bottom: 20px;
+	
+	.md-button {
+		padding: 0 !important;
+	}
+
+	.product-list-hover {
+
+		display: none;
+		cursor: pointer;
+
+		.product-list-hover-content {
+			
+			color: #fff;
+			display: table;
+		    width: 100%;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		    height: 100%;
+
+		    .product-list-hover-content-middle {
+				display: table-cell;
+				vertical-align: middle;
+				float: none;
+
+				span {
+					display: block;
+    				text-align: center;
+    				&.product-list-hover-content-middle-content {
+    					font-size: 16px;
+    					font-weight: bold;
+    				}
+				}
+			}
 		}
 	}	
+
+	&:hover {
+
+		.product-list-hover {
+			display: block;
+			background-color: rgba(0,153,153, 0.6);
+		    width: 100%;
+		    height: 100%;
+		    z-index: 1;
+		    position: absolute;
+		}
+
+	}
+
+	.product-list {
+		margin: 1px;
+		cursor: pointer;
+
+		.md-card-image {
+			height: 200px;
+			overflow: hidden;
+
+			img {
+				position: relative;
+				top: -20px;
+				min-height: 220px;
+			}
+
+			.label-price {
+				position: absolute;
+			    top: 210px;
+			    background-color: @yellow;
+			    color: #fff;
+			    font-family: 'Montserrat Alternates', sans-serif;
+			    right: 20px;
+			    padding: 5px 10px;
+	    		border-radius: 5px;
+			}
+		}
+
+		md-card-content {
+			line-height: 20px;
+		}
+	}
 }
