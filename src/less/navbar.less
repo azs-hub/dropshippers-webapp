@@ -3,6 +3,11 @@
 #main-navbar {
 	background-color: #fff;
 
+	.logo {
+	 	height: 60px;
+    	vertical-align: super;
+	}
+
 	.main-navbar--link {
 		background-color: #fff;
 		color: #000;
@@ -24,6 +29,7 @@
 		background-color: @teal;
 		color: #fff;
 		text-transform: none;
+		border: solid 1px @teal;
 
 		&:hover {
 			background-color: #fff;
@@ -34,5 +40,38 @@
 			color: @teal;
 		}
 
+	}
+
+	.disconnect-button {
+		.disconnect-button-shop {
+			display: block;
+			margin-left: 20px;
+			margin-right: 20px;
+			border: solid 1px @teal;
+			background-color: #fff;
+			color: @teal;
+			cursor: default;
+
+			&:hover {
+				border: solid 1px @teal;
+				background-color: #fff;
+				color: @teal;
+			}
+		}
+
+		.disconnect-button-logout {
+			color: grey;
+		    display: block;
+		    font-size: 11px;
+		    height: 10px;
+		    min-height: 10px;
+		    line-height: 11px;
+		    margin-top: 5px;
+
+		    &:hover {
+				background-color: #fff;
+				color: @teal;
+			}
+		}
 	}
 }

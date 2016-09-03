@@ -18,7 +18,7 @@
         </md-input-container>
 
         <div class="button-list">
-          <md-button ui-sref="home" class="button-link">
+          <md-button ui-sref="signin" class="button-link">
             Je n'ai pas de compte ?
           </md-button>
           <md-button ui-sref="home" class="button-link">
@@ -26,9 +26,9 @@
           </md-button>
         </div>
 
-        <section layout="row" layout-sm="column" layout-align="right" layout-wrap="">
-          <md-button class="md-accent md-raised" ng-click="login()">Connexion</md-button>
-        </section>
+        <md-input-container class="md-block">
+          <md-button type="submit" class="md-accent md-raised" ng-click="login()">Connexion</md-button>
+        </md-input-container>
       </div>
     </div>
 </div>

@@ -5,7 +5,34 @@ Présentation du Site
 	<a ui-sref="signin">S'inscrire</a>
 </div>>
 
-<div ng-if="user.isAuth">
+<div ng-if="user.isAuth" class="row">
+	<div class="col-xs-3" ng-repeat="product in products track by $index">
+		<md-card class="product-list">
+	        <md-card-header>
+	          <md-card-avatar>
+	            <!-- <img src="img/logo.svg"/> -->
+	          </md-card-avatar>
+	          <md-card-header-text>
+	            <span class="md-title">Shop name</span>
+	            <span class="md-subhead">Type de produit</span>
+	          </md-card-header-text>
+	        </md-card-header>
+	        <div class="md-card-image">
+	        	<img ng-src="/assets/images/produit-1.jpg" alt="Washed Out">
+	        </div>
+	        <md-card-title>
+	          <md-card-title-text>
+	            <span class="md-headline">{{ product.name }}</span>
+	          </md-card-title-text>
+	        </md-card-title>
+	        <md-card-content>
+	          <p>
+	            {{ product.description }}
+	          </p>
+	        </md-card-content>
+	     </md-card>
+     </div>
+	
 	<ul>
 	<li ng-repeat="product in products track by $index">
 		<a ui-sref="detailProduct({id: product.dropshippers_ref})">
