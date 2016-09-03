@@ -6,6 +6,7 @@ angular.module('dropshippers', [
     'proposition',
     'auth',
     'product',
+    'navbar',
     'ui.router',
     'ngMaterial',
     'ngAnimate',
