@@ -69,9 +69,13 @@ angular.module('dropshippers', [
                 controller: 'AuthController'
               })
               .state('home', {
-                url: '/',
-                templateUrl: 'app/home/index.html',
-                controller: 'HomeController'
+                  url: '/',
+                  templateUrl: 'app/home/index.html',
+                  controller: 'HomeController'
+              })
+              .state('homepage', {
+                  url: '/homepage',
+                  templateUrl: 'app/homepage/homepage.html'
               })
               .state('dashboard', {
                 url: '/dashboard',
