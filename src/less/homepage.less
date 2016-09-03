@@ -1,8 +1,8 @@
 .homepage {
   .introduction,
   .our-idea,
-  .the-product,
   .how-start {
+    padding-bottom: 75px;
     h1 {
       margin-top: 75px;
     }
@@ -23,24 +23,45 @@
     strong {
       color: teal;
     }
+    .right {
+      position: absolute;
+      bottom:   0;
+      left:     50%
+    }
     img {
       display: block;
       margin:  auto;
       width:   320px;
     }
   }
-
-  .the-product {
-    text-align: right;
-  }
-
+  
   .how-start {
     color:            white;
     background-color: teal;
     img {
-      display: block;
-      margin:  auto;
-      width:   415px;
+      display:     block;
+      margin:      auto;
+      width:       415px;
+      padding-top: 60px;
+    }
+  }
+
+  .the-product {
+    text-align: right;
+    h1 {
+      margin-top: 75px;
+    }
+    .left,
+    .right {
+      height: 600px;
+    }
+    .left {
+      background-image:    url("../assets/images/home_image_visuel-3.png");
+      background-repeat:   no-repeat;
+      background-position: bottom;
+    }
+    .right {
+      background-image: url("../assets/images/home_image_acceuil-2.jpg");
     }
   }
 }
