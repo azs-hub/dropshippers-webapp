@@ -1,0 +1,96 @@
+.marginAndPadding(@iterations) {
+  .pd0 {padding: 0px;}
+  .pdT0{padding-top: 0px;}
+  .pdR0{padding-right: 0px;}
+  .pdB0{padding-bottom: 0px;}
+  .pdL0{padding-left: 0px;}
+
+  .mg0 {margin: 0px;}
+  .mgT0{margin-top: 0px;}
+  .mgR0{margin-right: 0px;}
+  .mgB0{margin-bottom: 0px;}
+  .mgL0{margin-left: 0px;}
+
+  .pd0-ipt {padding: 0px!important;}
+  .pdT0-ipt{padding-top: 0px!important;}
+  .pdR0-ipt{padding-right: 0px!important;}
+  .pdB0-ipt{padding-bottom: 0px!important;}
+  .pdL0-ipt{padding-left: 0px!important;}
+
+  .mg0-ipt {margin: 0px!important;}
+  .mgT0-ipt{margin-top: 0px!important;}
+  .mgR0-ipt{margin-right: 0px!important;}
+  .mgB0-ipt{margin-bottom: 0px!important;}
+  .mgL0-ipt{margin-left: 0px!important;}
+
+  .style_margin_padding (@index) when (@index > 0) {
+
+    .pd@{index}{
+      padding: (1px * @index);
+    }
+    .pd@{index}-ipt{
+      padding: (1px * @index)!important;
+    }
+    .pdT@{index}{
+      padding-top: (1px * @index);
+    }
+    .pdT@{index}-ipt{
+      padding-top: (1px * @index)!important;
+    }
+    .pdR@{index}{
+      padding-right: (1px * @index);
+    }
+    .pdR@{index}-ipt{
+      padding-right: (1px * @index)!important;
+    }
+    .pdB@{index}{
+      padding-bottom: (1px * @index);
+    }
+    .pdB@{index}-ipt{
+      padding-bottom: (1px * @index)!important;
+    }
+    .pdL@{index}{
+      padding-left: (1px * @index);
+    }
+    .pdL@{index}-ipt{
+      padding-left: (1px * @index)!important;
+    }
+
+    .mg@{index}{
+      margin: (1px * @index);
+    }
+    .mg@{index}-ipt{
+      margin: (1px * @index)!important;
+    }
+    .mgT@{index}{
+      margin-top: (1px * @index);
+    }
+    .mgT@{index}-ipt{
+      margin-top: (1px * @index)!important;
+    }
+    .mgR@{index}{
+      margin-right: (1px * @index);
+    }
+    .mgR@{index}-ipt{
+      margin-right: (1px * @index)!important;
+    }
+    .mgB@{index}{
+      margin-bottom: (1px * @index);
+    }
+    .mgB@{index}-ipt{
+      margin-bottom: (1px * @index)!important;
+    }
+    .mgL@{index}{
+      margin-left: (1px * @index);
+    }
+    .mgL@{index}-ipt{
+      margin-left: (1px * @index)!important;
+    }
+
+    // next iteration
+    .style_margin_padding(@index - 5);
+  }
+  .style_margin_padding (0) {}
+  .style_margin_padding (@iterations);
+}
+.marginAndPadding(70);

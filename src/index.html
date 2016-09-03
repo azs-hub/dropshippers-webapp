@@ -28,16 +28,19 @@
       <md-toolbar ng-controller="NavbarController">
         <div class="md-toolbar-tools" id="main-navbar">
           <h2>
-            <img src="/assets/images/logo_header_dropshippers.png" alt="logo" class="logo" />
+            <img src="/assets/images/logo_header_dropshippers.png"
+                  ng-show="showLogo($state.current.name)"
+                  alt="logo"
+                  class="logo" />
           </h2>
           <span flex></span>
-          <md-button ng-href="home" class="main-navbar--link">
+          <md-button ui-sref="home" class="main-navbar--link">
             A propos
           </md-button>
-          <md-button ng-href="home" class="main-navbar--link">
+          <md-button ui-sref="home" class="main-navbar--link">
             Actualités
           </md-button>
-          <md-button ng-href="login" class="main-navbar--link-primary">
+          <md-button ui-sref="login" class="main-navbar--link-primary">
             Inscription / Connexion
           </md-button>
         </div>
