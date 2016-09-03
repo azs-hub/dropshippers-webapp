@@ -105,6 +105,7 @@ angular.module('dropshippers', [
                 }
               });
     }])
-    .run( ['$rootScope',
-        function ($rootScope) {
+    .run( ['$rootScope', '$auth',
+        function ($rootScope, $auth) {
+          $rootScope.isAuthenticated = $auth.isAuthenticated();
         }]);

@@ -50,8 +50,8 @@
           <md-button ui-sref="home" class="main-navbar--link" ng-show="isAuthenticated">
             Partenariats
           </md-button>
-          <md-input-container class="md-block disconnect-button">
-            <md-button class="main-navbar--link-primary disconnect-button-shop" ng-show="isAuthenticated">
+          <md-input-container class="md-block disconnect-button" ng-show="isAuthenticated">
+            <md-button class="main-navbar--link-primary disconnect-button-shop">
               Shop name
             </md-button>
             <md-button ng-click="logout()" class="button-link disconnect-button-logout">
@@ -84,7 +84,7 @@
   <!-- inject-string:config -->
 
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
+    <div ng-class="{'col-xs-10 col-xs-offset-1': isAuthenticated, 'col-xs-12': !isAuthenticated}">
       <div ui-view></div>
     </div>
   </div>
