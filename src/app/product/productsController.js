@@ -20,7 +20,12 @@ angular.module('dropshippers')
             console.log('propositions', res);
           });
 
-      }
+        }
+
+        $scope.go = function (productId) {
+          //alert(productId);
+          $state.go('detailProduct', {id: productId});
+        }
       }
     ]
   );

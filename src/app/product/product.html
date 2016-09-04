@@ -1,5 +1,37 @@
-OK
-{{ product }}
+<div class="row">
+	<div class="col-xs-4">
+
+		<md-card class="product-list" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}">
+			<a class="product-hover"></a>
+		    <md-card-header>
+		      <md-card-avatar>
+		        <!-- <img src="img/logo.svg"/> -->
+		      </md-card-avatar>
+		      <md-card-header-text>
+		        <span class="md-title">shopName</span>
+		        <span class="md-subhead">Type de produit</span>
+		      </md-card-header-text>
+		    </md-card-header>
+		    <div class="md-card-image">
+		    	<img ng-src="/assets/images/produit-1.jpg" alt="Washed Out">
+		    </div>
+		    <md-card-title>
+		    </md-card-title>
+		    <md-card-content>
+		    </md-card-content>
+		</md-card>
+
+	</div>
+
+	<div class="col-xs-8">
+
+		<h2>Nom du produit</h2>		
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non imperdiet mauris. Nam dignissim, sapien eu accumsan condimentum, massa mauris pretium tortor, at faucibus tellus risus a risus. Sed lacus dolor, dapibus sit amet hendrerit eget, hendrerit ut augue. Nam odio arcu, aliquam quis ante sit amet, congue cursus nisi. Nam vitae efficitur tellus, a sodales risus. Proin in orci sit amet velit porta rhoncus sagittis mattis mauris. Aliquam a mattis justo. Morbi bibendum scelerisque tortor, vitae ultricies sapien gravida non. Sed posuere, tellus ut sollicitudin ultricies, nulla orci imperdiet mi, at auctor dolor ante ac tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+	</div>
+</div>
+
 
 <ul>
 	<li ng-repeat="data in product">

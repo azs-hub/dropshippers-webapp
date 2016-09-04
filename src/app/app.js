@@ -102,6 +102,7 @@ angular.module('dropshippers', [
                 controller: 'ProductController',
                 resolve: {
                   product: function($stateParams, ProductService) {
+                    console.log($stateParams);
                     return ProductService.getProduct($stateParams.id).then(function(res) {
                       return res.data;
                     });
