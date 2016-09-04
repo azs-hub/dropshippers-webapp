@@ -79,27 +79,27 @@ angular.module('dropshippers', [
                 }
               })
               .state('products', {
-                  url: '/products',
-                  templateUrl: 'app/product/products.html',
-                  controller: 'ProductsController'
+                url: '/products',
+                templateUrl: 'app/product/products.html',
+                controller: 'ProductsController'
               })
-              .state('dashboard', {
-                url: '/dashboard',
-                templateUrl: 'app/dashboard/index.html',
-                controller: 'DashboardController'
+              .state('propositions', {
+                url: '/propositions',
+                templateUrl: 'app/propositions/index.html',
+                controller: 'PropositionsController'
               })
               .state('signin', {
-                  url: '/signin',
-                  templateUrl: 'app/auth/signin.html',
-                  controller: 'SigninController'
+                url: '/signin',
+                templateUrl: 'app/auth/signin.html',
+                controller: 'SigninController'
               })
               .state('about', {
-                  url: '/about',
-                  views: {
-                    'full': {
-                      templateUrl: 'app/about/about.html'
-                    }
+                url: '/about',
+                views: {
+                  'full': {
+                    templateUrl: 'app/about/about.html'
                   }
+                }
               })
               .state('detailProduct', {
                 url: '/product/:id',

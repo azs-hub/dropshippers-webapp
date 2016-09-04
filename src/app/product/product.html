@@ -47,7 +47,7 @@
 			      <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
 			      <md-radio-button value="false">Non</md-radio-button>
 			    </md-radio-group>
-			    
+
 			    <md-radio-group ng-model="proposition.isSendDirectly">
 			      <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
 			      <md-radio-button value="false">Non</md-radio-button>
@@ -65,16 +65,19 @@
 				</md-input-container>
 
 			</div>
+			<div class="col-xs-12">
+			<table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+		      <tr ng-repeat="row in $data">
+		        <td data-title="'Name'">{{row.name}}</td>
+		        <td data-title="'Age'" sortable="'age'">{{row.age}}</td>
+		        <td data-title="'Money'" sortable="'money'">{{row.money}}</td>
+		      </tr>
+		    </table>
+			</div>
 		</div>
 
 	</div>
 </div>
 
-
-<ul>
-	<li ng-repeat="(key, data) in product">
-		{{ key }} - {{ data }}
-	</li>
-</ul>
 
 

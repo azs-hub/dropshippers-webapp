@@ -12,13 +12,11 @@ angular.module('dropshippers')
         if ($auth.isAuthenticated()) {
           ProductService.getProducts().then(function(res) {
             $scope.products = res.products;
-            console.log('products', res);
           });
 
         }
 
         $scope.go = function (productId) {
-          //alert(productId);
           $state.go('detailProduct', {id: productId});
         }
       }

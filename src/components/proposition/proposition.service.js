@@ -24,7 +24,7 @@ angular.module('proposition.service', [])
           return $http({
             method: 'GET',
             url: BASE_URL_API + 'front/user/propositions',
-            data: {
+            params: {
               product_ref: id
             }
           }).then(function successCallback(response) {
