@@ -12,6 +12,7 @@ angular.module('dropshippers', [
     'ngAnimate',
     'ngAria',
     'ngLodash',
+    'ngTable',
     'satellizer'])
 
     .config(function($mdThemingProvider) {

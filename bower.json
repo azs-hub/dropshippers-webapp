@@ -15,8 +15,7 @@
     "angular-resource": "~1.5",
     "ngstorage": "~0.3.10",
     "angular-toastr": "1.7.0",
-    "ng-table": "^1.0.0",
-
+    "ng-table": "~1.0.0",
     "font-awesome": "fontawesome#^4.5.0",
     "lodash": "^4.5.1",
     "ng-lodash": "~0.4.0"
