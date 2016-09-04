@@ -15,11 +15,6 @@ angular.module('dropshippers')
             console.log('products', res);
           });
 
-          PropositionService.getPropositions().then(function(res) {
-            $scope.propositions = res.propositions;
-            console.log('propositions', res);
-          });
-
         }
 
         $scope.go = function (productId) {

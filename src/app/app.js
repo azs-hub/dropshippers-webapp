@@ -70,12 +70,12 @@ angular.module('dropshippers', [
                 controller: 'AuthController'
               })
               .state('home', {
-                  url: '/',
-                  views: {
+                url: '/',
+                views: {
                   'full': {
                     templateUrl: 'app/home/index.html',
                     controller: 'HomeController'
-                   }
+                  }
                 }
               })
               .state('products', {
@@ -95,7 +95,11 @@ angular.module('dropshippers', [
               })
               .state('about', {
                   url: '/about',
-                  templateUrl: 'app/about/about.html'
+                  views: {
+                    'full': {
+                      templateUrl: 'app/about/about.html'
+                    }
+                  }
               })
               .state('detailProduct', {
                 url: '/product/:id',

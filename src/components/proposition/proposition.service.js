@@ -23,7 +23,10 @@ angular.module('proposition.service', [])
           $log.debug('Proposition:getProposition', id);
           return $http({
             method: 'GET',
-            url: BASE_URL_API + 'front/user/propositions/'+ id
+            url: BASE_URL_API + 'front/user/propositions',
+            data: {
+              product_ref: id
+            }
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);
               return response;
@@ -32,16 +35,13 @@ angular.module('proposition.service', [])
               return response;
             });
         },
-        addProposition: function(id) {
-          $log.debug('Proposition:Proposition', id);
+        addProposition: function(values) {
+          $log.debug('Proposition:Proposition', values);
           console.log(BASE_URL_API);
           return $http({
             method: 'POST',
             url: BASE_URL_API + 'front/user/partners/products/proposition',
-            data: {
-              product_reference: id,
-              quantity: 1
-            }
+            data: values
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);
               return response;

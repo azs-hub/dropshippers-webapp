@@ -8,7 +8,7 @@
 		        <!-- <img src="img/logo.svg"/> -->
 		      </md-card-avatar>
 		      <md-card-header-text>
-		        <span class="md-title">shopName</span>
+		        <span class="md-title">{{ product.shop.name }}</span>
 		        <span class="md-subhead">Type de produit</span>
 		      </md-card-header-text>
 		    </md-card-header>
@@ -28,12 +28,42 @@
 		<div class="row">
 			<div class="col-xs-12">
 
-				<h2>Nom du produit</h2>		
+				<h2>{{ product.name }}</h2>		
 
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam non imperdiet mauris. Nam dignissim, sapien eu accumsan condimentum, massa mauris pretium tortor, at faucibus tellus risus a risus. Sed lacus dolor, dapibus sit amet hendrerit eget, hendrerit ut augue. Nam odio arcu, aliquam quis ante sit amet, congue cursus nisi. Nam vitae efficitur tellus, a sodales risus. Proin in orci sit amet velit porta rhoncus sagittis mattis mauris. Aliquam a mattis justo. Morbi bibendum scelerisque tortor, vitae ultricies sapien gravida non. Sed posuere, tellus ut sollicitudin ultricies, nulla orci imperdiet mi, at auctor dolor ante ac tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+				<p>{{ product.description }}</p>
 			</div>
 			<div class="col-xs-12">
 			
+				<md-input-container>
+			        <input type="hidden" ng-model="proposition.product_reference" value="{{ product.dropshippers_ref }}" />
+			     </md-input-container>
+
+				<md-input-container>
+			        <label>Prix</label>
+			        <input type="number" ng-model="proposition.price" step="0.01" max="{{ product.price }}" />
+			     </md-input-container>
+
+			    <md-radio-group ng-model="proposition.isWhiteMark">
+			      <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
+			      <md-radio-button value="false">Non</md-radio-button>
+			    </md-radio-group>
+			    
+			    <md-radio-group ng-model="proposition.isSendDirectly">
+			      <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
+			      <md-radio-button value="false">Non</md-radio-button>
+			    </md-radio-group>
+
+			    <md-input-container class="md-block">
+		          <label>Message</label>
+		          <textarea ng-model="proposition.message" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+		        </md-input-container>
+
+		        <md-input-container class="md-block">
+			        <button ng-click="props()">
+						Proposition
+					</button>
+				</md-input-container>
+
 			</div>
 		</div>
 
@@ -42,11 +72,9 @@
 
 
 <ul>
-	<li ng-repeat="data in product">
-		{{ data }}
+	<li ng-repeat="(key, data) in product">
+		{{ key }} - {{ data }}
 	</li>
 </ul>
 
-<button ng-click="props()">
-	proposition pour 1 produit
-</button>
+

@@ -7,11 +7,16 @@ angular.module('dropshippers')
         $scope.user = {
           isAuth: $auth.isAuthenticated()
         };
-
         $scope.product = product.product;
+        var proposition = {
+          product_reference: product.product.dropshippers_ref,
+          quantity: 1,
+          deliveryArea: 'all'
+        };
 
         $scope.props = function () {
-          PropositionService.addProposition($scope.product.dropshippers_ref).then(function(res) {
+          angular.extend($scope.proposition, proposition);
+          PropositionService.addProposition($scope.proposition).then(function(res) {
             console.log(res);
           });
         };
@@ -87,6 +92,11 @@ angular.module('dropshippers')
             }
           ];
 
+         PropositionService.getProposition(product.product.dropshippers_ref).then(function(res) {
+
+            console.log('res: ', res);
+        });
+
         $scope.tableParams = new NgTableParams({
         count: 10,
         sorting: {idEntity: "asc"}
@@ -94,14 +104,22 @@ angular.module('dropshippers')
         counts: [],
         total: 0,
         getData: function (params) {
-          var filteredData = params.filter() ?
-                  $filter('filter')(messages, params.filter()) :
-                  messages;
-              var orderedData = params.sorting() ?
-                  $filter('orderBy')(filteredData, params.orderBy()) :
-                  filteredData;
-              params.total(orderedData.length);
-              return orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+          return PropositionService.getProposition(product.product.dropshippers_ref).then(function(res) {
+
+            console.log('res: ', res);
+
+            // var filteredData = params.filter() ?
+            //       $filter('filter')(messages, params.filter()) :
+            //       messages;
+            // var orderedData = params.sorting() ?
+            //     $filter('orderBy')(filteredData, params.orderBy()) :
+            //     filteredData;
+            // params.total(orderedData.length);
+            return orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+
+            $scope.propositions = res.propositions;
+            console.log('propositions', res);
+          });
         },
         paginationMaxBlocks: 5,
         paginationMinBlocks: 2

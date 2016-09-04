@@ -1,61 +1,61 @@
-<div>
-	<div class="row">
-		<div class="col-xs-12">
-			<h2 class="text-center">Produits disponibles</h2>
+<div class="row">
+	<div class="col-xs-12">
+		<h2 class="text-center">Produits disponibles</h2>
 
-			<p class="text-center">Recherchez les produits à l'aide de la barre de recherche ci-dessous</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-3" ng-repeat="product in products track by $index">
-			<md-list-item class="product-list-item" ng-click="go(product.dropshippers_ref)">
-				<div class="product-list-hover">
-					
-					<div class="product-list-hover-content">
-						<div class="product-list-hover-content-middle">
-							<span><i class="fa fa-eye fa-2x"></i></span>
-							<span class="product-list-hover-content-middle-content">Regarder ce produit</span>
-						</div>
-					</div>
-
-				</div>
-				<md-card class="product-list" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}">
-					<a class="product-hover"></a>
-			        <md-card-header>
-			          <md-card-avatar>
-			            <!-- <img src="img/logo.svg"/> -->
-			          </md-card-avatar>
-			          <md-card-header-text>
-			            <span class="md-title">{{ product.shopName }}</span>
-			            <span class="md-subhead">Type de produit</span>
-			          </md-card-header-text>
-			        </md-card-header>
-			        <div class="md-card-image">
-			        	<img ng-src="/assets/images/produit-1.jpg" alt="Washed Out">
-			        	<span class="label-price">{{ product.price }} € / Pièce</span>
-			        </div>
-			        <md-card-title>
-			          <md-card-title-text>
-			            <span class="md-headline">{{ product.name }}</span>
-			          </md-card-title-text>
-			        </md-card-title>
-			        <md-card-content>
-			          <p>
-			            {{ product.description | limitTo:150 }} ...
-			          </p>
-			        </md-card-content>
-			     </md-card>
-			</md-list-item>
-	     </div>
+		<p class="text-center">Recherchez les produits à l'aide de la barre de recherche ci-dessous</p>
 	</div>
 </div>
+<div class="row">
+	<div class="col-xs-3" ng-repeat="product in products track by $index">
+		<md-list-item class="product-list-item" ng-click="go(product.dropshippers_ref)">
+			<div class="product-list-hover">
+				
+				<div class="product-list-hover-content">
+					<div class="product-list-hover-content-middle">
+						<span><i class="fa fa-eye fa-2x"></i></span>
+						<span class="product-list-hover-content-middle-content">Regarder ce produit</span>
+					</div>
+				</div>
 
-	<ul>
-	<li ng-repeat="proposition in propositions track by $index">
-		<a>
-			{{ proposition }}
-		</a>
-	</li>
-	</ul>
+			</div>
+			<md-card class="product-list" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}">
+				<a class="product-hover"></a>
+		        <md-card-header>
+		          <md-card-avatar>
+		            <!-- <img src="img/logo.svg"/> -->
+		          </md-card-avatar>
+		          <md-card-header-text>
+		            <span class="md-title">{{ product.shopName }}</span>
+		            <span class="md-subhead">Type de produit</span>
+		          </md-card-header-text>
+		        </md-card-header>
+		        <div class="md-card-image">
+		        	<img ng-src="/assets/images/produit-1.jpg" alt="Washed Out">
+		        	<span class="label-price">{{ product.price }} € / Pièce</span>
+		        </div>
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">{{ product.name }}</span>
+		          </md-card-title-text>
+		        </md-card-title>
+		        <md-card-content>
+		          <p>
+		            {{ product.description | limitTo:150 }} ...
+		          </p>
+		        </md-card-content>
+		     </md-card>
+		</md-list-item>
+     </div>
+</div>
+<div class="row">
+	<div class="col-xs-3">
+		<ul>
+			<li ng-repeat="proposition in propositions track by $index">
+				<a>
+					{{ proposition }}
+				</a>
+			</li>
+		</ul>
+	</div>
 </div>
 
