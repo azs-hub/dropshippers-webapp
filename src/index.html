@@ -27,7 +27,7 @@
     <div class="col-xs-10 col-xs-offset-1">
       <md-toolbar ng-controller="NavbarController">
         <div class="md-toolbar-tools" id="main-navbar">
-          <a ui-sref="home">
+          <a ng-click="go()">
             <img src="/assets/images/logo_header_dropshippers.png"
                   ng-show="showLogo($state.current.name)"
                   alt="logo"
@@ -84,8 +84,14 @@
   <!-- inject-string:config -->
 
   <div class="row">
-    <div ng-class="{'col-xs-10 col-xs-offset-1': isAuthenticated, 'col-xs-12': !isAuthenticated}">
+    <div class="col-xs-10 col-xs-offset-1">
       <div ui-view></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <ui-view name="full"></ui-view>
     </div>
   </div>
 

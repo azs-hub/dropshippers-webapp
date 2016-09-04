@@ -12,9 +12,10 @@ angular.module('dropshippers')
               .then(function(response) {
                 if (response.status == 200)
                 {
-                  console.log("then",response);
                   $auth.setToken(response);
-                  $state.go('home')
+                  $scope.$emit('auth:loged');
+                  $state.go('products');
+
                 }
                 else {
                   $mdToast.show(

@@ -1,74 +1,77 @@
-<div ng-if="!user.isAuth" ng-include="'app/home/homepage.html'">
-	
+<div class="homepage">
+  <div class="row">
+    <div class="row">
+      <div class="col-xs-12 introduction">
+        <div class="col-xs-6 col-xs-offset-3">
+          <h1>Vous possédez un stock surchargé et vous manquez de ressources pour vendre ?</h1>
+          <h2>Ou alors, vous n'en avez pas suffisament ?</h2>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 our-idea">
+        <div class="col-xs-6 col-xs-offset-1">
+          <h1>NOTRE IDEE, VOTRE SOLUTION.</h1>
+          <h2>Comment débuter ?</h2>
+          <div class="row">
+            <div class="col-xs-6">
+              <p>Nous, The DropShippers, nous vous invitons à nous rejoindre ! Faire du dropshipping communautaire est une innovation sur le plan business. Notre idée ? S'accorder avec une des tendances actuelles du e-commerce: <strong>les marketplaces.</strong></p>
+            </div>
+            <div class="col-xs-6">
+              <p>Vous pouvez ainsi mettre en commun votre stock avec d'autres e-commerçants et/ou vendre leurs articles sur votre site. Aucune crainte à avoir concernant votre image de marque. En cas de non respect de vos politiques commerciales, nous sommes là pour contrôler et vous avertir.</p>
+
+              En savoir plus
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-5 right">
+          <img src="../assets/images/home_image_visuel-1.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 how-start">
+        <div class="row">
+          <div class="col-xs-5">
+            <img src="../assets/images/home_image_visuel-2.png">
+          </div>
+          <div class="col-xs-6">
+            <h1>COMMENT DEBUTER ?</h1>
+            <h2>Le mode d'emploi.</h2>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <p>Inscrivez-vous sur notre site Dropshippers.io et téléchargez le module. Puis, laissez-vous guider par notre plate-forme. Ensuite, à vous de jouer ! Vous trouverez toutes nos fonctionnalités en tant que fournisseur ou vendeur. Notre plate-forme est simple d'utilisation pour que vous ne soyer pas submergé par émotions.</p>
+              </div>
+
+              <div class="col-xs-6">
+                <p>Puis, laissez-vous guider par notre plate-forme. Ensuite, à vous de jouer ! Vous trouverez toutes nos fonctionnalités en tant que fournisseur ou vendeur. Notre plate-forme est simple d'utilisation pour que vous ne soyez pas submergé par vos émotions.</p>
+                En savoir plus
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 the-product">
+      <div class="col-xs-6 left">
+        <h1>LE PRODUIT.</h1>
+        <h2>Gérez votre stock comme bon vous semble !</h2>
+        <p>Publiez vos produits, ils seront visibles par vos confrères Dropshippers.
+          </br>
+           Vos produits peuvent être revendus par d'autres e-commerçants et pas conséquent, vous écoulez vos invendus.</p>
+        <p>Vous augmenterez donc vos chiffres d'affaires et respecterz vos objectifs.
+          </br>
+           Gérez vos commandes grâce à notre plate-forme, elles apparaîtront sur votre espace vente.</p>
+        <p>Cet espace vous permettra de visualiser les statistiques ainsi que les détails de ventes d'un ou de plusieur produits et de maintenir à jour votre stock.</p>
+        Démarrez dès maintenant !
+      </div>
+      <div class="col-xs-6 right">
+      </div>
+    </div>
+  </div>
 </div>
-
-<div ng-if="user.isAuth">
-	<div class="row">
-		<div class="col-xs-12">
-			<h2 class="text-center">Produits disponibles</h2>
-
-			<p class="text-center">Recherchez les produits à l'aide de la barre de recherche ci-dessous</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-3" ng-repeat="product in products track by $index">
-			<md-list-item class="product-list-item" ng-click="dummy()">
-				<div class="product-list-hover">
-					
-					<div class="product-list-hover-content">
-						<div class="product-list-hover-content-middle">
-							<span><i class="fa fa-eye fa-2x"></i></span>
-							<span class="product-list-hover-content-middle-content">Regarder ce produit</span>
-						</div>
-					</div>
-
-				</div>
-				<md-card class="product-list" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}">
-					<a class="product-hover"></a>
-			        <md-card-header>
-			          <md-card-avatar>
-			            <!-- <img src="img/logo.svg"/> -->
-			          </md-card-avatar>
-			          <md-card-header-text>
-			            <span class="md-title">{{ product.shopName }}</span>
-			            <span class="md-subhead">Type de produit</span>
-			          </md-card-header-text>
-			        </md-card-header>
-			        <div class="md-card-image">
-			        	<img ng-src="/assets/images/produit-1.jpg" alt="Washed Out">
-			        	<span class="label-price">{{ product.price }} € / Pièce</span>
-			        </div>
-			        <md-card-title>
-			          <md-card-title-text>
-			            <span class="md-headline">{{ product.name }}</span>
-			          </md-card-title-text>
-			        </md-card-title>
-			        <md-card-content>
-			          <p>
-			            {{ product.description | limitTo:150 }} ...
-			          </p>
-			        </md-card-content>
-			     </md-card>
-			</md-list-item>
-	     </div>
-	</div>
-</div>
-	
-	<ul>
-	<li ng-repeat="product in products track by $index">
-		<a ui-sref="detailProduct({id: product.dropshippers_ref})">
-		
-			{{ product.name }}
-		</a>
-	</li>
-	</ul>
-
-	<ul>
-	<li ng-repeat="proposition in propositions track by $index">
-		<a>
-			{{ proposition }}
-		</a>
-	</li>
-	</ul>
-</div>
-

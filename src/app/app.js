@@ -70,27 +70,32 @@ angular.module('dropshippers', [
               })
               .state('home', {
                   url: '/',
-                  templateUrl: 'app/home/index.html',
-                  controller: 'HomeController'
+                  views: {
+                  'full': {
+                    templateUrl: 'app/home/index.html',
+                    controller: 'HomeController'
+                   }
+                }
               })
-              .state('homepage', {
-                  url: '/homepage',
-                  templateUrl: 'app/homepage/homepage.html'
+              .state('products', {
+                  url: '/products',
+                  templateUrl: 'app/product/products.html',
+                  controller: 'ProductsController'
               })
               .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: 'app/dashboard/index.html',
                 controller: 'DashboardController'
               })
-                .state('signin', {
-                    url: '/signin',
-                    templateUrl: 'app/auth/signin.html',
-                    controller: 'SigninController'
-                })
-                .state('about', {
-                    url: '/about',
-                    templateUrl: 'app/about/about.html'
-                })
+              .state('signin', {
+                  url: '/signin',
+                  templateUrl: 'app/auth/signin.html',
+                  controller: 'SigninController'
+              })
+              .state('about', {
+                  url: '/about',
+                  templateUrl: 'app/about/about.html'
+              })
               .state('detailProduct', {
                 url: '/product/:id',
                 templateUrl: 'app/product/product.html',
@@ -98,7 +103,6 @@ angular.module('dropshippers', [
                 resolve: {
                   product: function($stateParams, ProductService) {
                     return ProductService.getProduct($stateParams.id).then(function(res) {
-                      console.log('OKE', res.data);
                       return res.data;
                     });
                   }
@@ -106,6 +110,20 @@ angular.module('dropshippers', [
               });
     }])
     .run( ['$rootScope', '$auth',
-        function ($rootScope, $auth) {
-          $rootScope.isAuthenticated = $auth.isAuthenticated();
-        }]);
+      function ($rootScope, $auth) {
+        //$rootScope.isAuthenticated = $auth.isAuthenticated();
+
+        $rootScope.$on("$stateChangeStart", function (event, toState, toParams) {
+
+          var signupState = ['signin', 'login', 'home', 'about'];
+
+          // Authenticated user
+          if (!$auth.isAuthenticated()) {
+            // Asked route is "sign in" or "sign up" forms
+            if (_.indexOf(signupState, toState.name) == -1) {
+              $rootScope.$emit('auth:logout');
+            }
+          }
+        });
+      }
+    ]);
