@@ -3,6 +3,15 @@
   color:            white;
   padding:          30px 0;
   .content {
+    .col-xs-offset-1 {
+      margin-left: 13%;
+    }
+    .footer-title::after {
+      content:        "";
+      display:        block;
+      content:        url("../assets/images/losange-1.png");
+      padding-bottom: 15px;
+    }
     .footer-title {
       font-size:   22px;
       font-weight: bold;
@@ -33,22 +42,42 @@
       }
     }
 
-    .quote {
-      text-align: center;
-      .quotee {
-        font-style:    italic;
-        margin-bottom: 20px;
-      }
-      .quotee-name {
-        font-weight: bold;
+    .center {
+      p {
+        font-family: 'Montserrat Alternates';
+        font-size:   12px;
       }
     }
-    img {
-      width:         160px;
-      display:       block;
-      margin:        auto;
-      margin-bottom: 30px;
+
+    .right::before {
+      content:     "";
+      position:    absolute;
+      border-left: 1px teal solid;
+      height:      80%;
+      top:         10%;
+      left:        -5px;
     }
+    
+    .right {
+      position: relative;
+      img {
+        width:         160px;
+        display:       block;
+        margin:        auto;
+        margin-bottom: 30px;
+      }
+      .quote {
+        text-align: center;
+        .quotee {
+          font-style:    italic;
+          margin-bottom: 20px;
+        }
+        .quotee-name {
+          font-weight: bold;
+        }
+      }
+    }
+    
   }
 }
 

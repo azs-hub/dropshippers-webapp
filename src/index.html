@@ -24,132 +24,138 @@
 </head>
 <body x-ng-app="dropshippers">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
-      <md-toolbar ng-controller="NavbarController">
-        <div class="md-toolbar-tools" id="main-navbar">
-          <a ng-click="go()">
-            <img src="/assets/images/logo_header_dropshippers.png"
-                  ng-show="showLogo($state.current.name)"
-                  alt="logo"
-                  class="logo" />
-          </a>
-          <span flex></span>
-          <md-button ui-sref="about" ui-sref-active="active" class="main-navbar--link" ng-show="!isAuthenticated">
-            A propos
-          </md-button>
-          <md-button ui-sref="home" ui-sref-active="active" class="main-navbar--link" ng-show="!isAuthenticated">
-            Actualités
-          </md-button>
-          <md-button ui-sref="login" class="main-navbar--link-primary" ng-show="!isAuthenticated">
-            Inscription / Connexion
-          </md-button>
-
-          <md-button ui-sref="products" ui-sref-active="{ 'active': 'home' }" class="main-navbar--link" ng-show="isAuthenticated">
-            Produits
-          </md-button>
-          <md-button ui-sref="propositions" class="main-navbar--link" ng-show="isAuthenticated">
-            Partenariats
-          </md-button>
-          <md-input-container class="md-block disconnect-button" ng-show="isAuthenticated">
-            <md-button class="main-navbar--link-primary disconnect-button-shop">
-              Shop name
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <md-toolbar ng-controller="NavbarController">
+          <div class="md-toolbar-tools" id="main-navbar">
+            <a ng-click="go()">
+              <img src="/assets/images/logo_header_dropshippers.png"
+                   ng-show="showLogo($state.current.name)"
+                   alt="logo"
+                   class="logo" />
+            </a>
+            <span flex></span>
+            <md-button ui-sref="about" ui-sref-active="active" class="main-navbar--link" ng-show="!isAuthenticated">
+              A propos
             </md-button>
-            <md-button ng-click="logout()" class="button-link disconnect-button-logout">
-              Se déconnecter
+            <md-button ui-sref="home" ui-sref-active="active" class="main-navbar--link" ng-show="!isAuthenticated">
+              Actualités
             </md-button>
-          </md-input-container>
-        </div>
-      </md-toolbar>
-    </div>
-  </div>
+            <md-button ui-sref="login" class="main-navbar--link-primary" ng-show="!isAuthenticated">
+              Inscription / Connexion
+            </md-button>
 
-
-
-  <!-- build:js(src) scripts/vendor.js -->
-  <!-- bower:js -->
-  <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
-  <!-- endbower -->
-  <!-- endbuild -->
-
-  <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-  <!-- inject:js -->
-  <!-- js files will be automaticaly insert here -->
-  <!-- endinject -->
-
-  <!-- inject:partials -->
-  <!-- angular templates will be automatically converted in js and inserted here -->
-  <!-- endinject -->
-  <!-- endbuild -->
-
-  <!-- inject-string:config -->
-
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
-      <div ui-view></div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <ui-view name="full"></ui-view>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="row content">
-      <div class="col-xs-3 col-xs-offset-2">
-        <div class="footer-title">
-          Contact
-        </div>
-        <p>Une question ? Un besoin ?</p>
-        <p>N'hésitez pas à nous contacter !</p>
-        <div class="phone">
-          <i class="fa fa-phone"></i>
-          <p>01 02 03 04 05</p>
-        </div>
-        <div class="mail">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
-          <p>info@dropshippers.com</p>
-        </div>
-        <div class="social">
-          <p>Suivez-nous en direct sur les réseaux !</p>
-          <i class="fa fa-facebook" aria-hidden="true"></i>
-          <i class="fa fa-twitter" aria-hidden="true"></i>
-          <i class="fa fa-google-plus" aria-hidden="true"></i>
-          <i class="fa fa-youtube" aria-hidden="true"></i>
-        </div>
-      </div>
-      <div class="col-xs-3">
-        <div class="footer-title">
-          News
-        </div>
-        <p>08/08/16</p>
-        <p>Première news</p>
-        <p>08/08/16</p>
-        <p>Deuxième news</p>
-        <p>08/08/16</p>
-        <p>Troisième news</p>
-      </div>
-      <div class="col-xs-3">
-        <img src="../assets/images/home_footer_logo-temoignage.png">
-        <div class="quote">
-          <div class="quotee">
-            "Ce que je ne savais pas du tout avant de me lancer, c'est ce que pour vendre quelque chose sur Internet, il faut être un pro de l'Internet."
+            <md-button ui-sref="products" ui-sref-active="{ 'active': 'home' }" class="main-navbar--link" ng-show="isAuthenticated">
+              Produits
+            </md-button>
+            <md-button ui-sref="propositions" class="main-navbar--link" ng-show="isAuthenticated">
+              Partenariats
+            </md-button>
+            <md-input-container class="md-block disconnect-button" ng-show="isAuthenticated">
+              <md-button class="main-navbar--link-primary disconnect-button-shop">
+                Shop name
+              </md-button>
+              <md-button ng-click="logout()" class="button-link disconnect-button-logout">
+                Se déconnecter
+              </md-button>
+            </md-input-container>
           </div>
-          <div class="quotee-name">
-            Jeremy Emsellem
-          </div>
-          <div class="quotee-position">
-            Goldenhook founder
-          </div>
-        </div>
+        </md-toolbar>
       </div>
     </div>
 
-  </div>
-  <div class="row">
-    <div class="legal-mentions">
-      © DropShippers 2016 - Mentions légales - Conditions d'utilisation
+
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automaticaly insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <!-- inject-string:config -->
+
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div ui-view></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <ui-view name="full"></ui-view>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="footer">
+        <div class="row content">
+          <div class="col-xs-3 col-xs-offset-1">
+            <div class="footer-title">
+              Contact
+            </div>
+            <p>Une question ? Un besoin ?</p>
+            <p>N'hésitez pas à nous contacter !</p>
+            <div class="phone">
+              <i class="fa fa-phone"></i>
+              <p>01 02 03 04 05</p>
+            </div>
+            <div class="mail">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <p>info@dropshippers.com</p>
+            </div>
+            <div class="social">
+              <p>Suivez-nous en direct sur les réseaux !</p>
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+              <i class="fa fa-google-plus" aria-hidden="true"></i>
+              <i class="fa fa-youtube" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-xs-3 center">
+            <div class="footer-title">
+              News
+            </div>
+            <p>08/08/16</p>
+            <p><b>The path of the righteous man is beset on all....</b></p>
+            </br>
+            <p>08/08/16</p>
+            <p><b>The path of the righteous man is beset on all....</b></p>
+            </br>
+            <p>08/08/16</p>
+            <p><b>The path of the righteous man is beset on all....</b></p>
+          </div>
+          <div class="col-xs-3 right">
+            <img src="../assets/images/home_footer_logo-temoignage.png">
+            <div class="quote">
+              <div class="quotee">
+                "Ce que je ne savais pas du tout avant de me lancer, c'est ce que pour vendre quelque chose sur Internet, il faut être un pro de l'Internet."
+              </div>
+              <div class="quotee-name">
+                Jeremy Emsellem
+              </div>
+              <div class="quotee-position">
+                Goldenhook founder
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="legal-mentions">
+        © DropShippers 2016 - Mentions légales - Conditions d'utilisation
+      </div>
     </div>
   </div>
 </body>
