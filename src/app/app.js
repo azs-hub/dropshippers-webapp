@@ -13,7 +13,8 @@ angular.module('dropshippers', [
     'ngAria',
     'ngLodash',
     'ngTable',
-    'satellizer'])
+    'satellizer',
+    'mm.acl'])
 
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
