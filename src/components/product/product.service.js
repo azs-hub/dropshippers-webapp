@@ -19,6 +19,19 @@ angular.module('product.service', [])
               return response;
             });
         },
+        getMyProducts: function() {
+          $log.debug('Product:getProducts');
+          return $http({
+              method: 'GET',
+              url: BASE_URL_API + 'ps/16/products',
+            }).then(function successCallback(response) {
+              console.log("successCallback : ", response);
+              return response.data;
+            }, function errorCallback(response) {
+              console.log("errorCallback : ", response);
+              return response;
+            });
+        },
         getProduct: function(id) {
           $log.debug('Product:getProduct', id);
           return $http({

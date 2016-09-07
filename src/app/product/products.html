@@ -30,7 +30,8 @@
 		          </md-card-header-text>
 		        </md-card-header>
 		        <div class="md-card-image">
-		        	<img ng-src="/assets/images/produit-1.jpg" alt="Washed Out">
+		        	<img ng-src="/assets/images/produit-1.jpg" alt="Washed Out" ng-if="product.images.length == 0">
+		        	<img ng-src="{{ product.images[0].link }}" alt="Washed Out" ng-if="product.images.length > 0">
 		        	<span class="label-price">{{ product.price }} € / Pièce</span>
 		        </div>
 		        <md-card-title>

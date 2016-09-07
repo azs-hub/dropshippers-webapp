@@ -83,6 +83,11 @@ angular.module('dropshippers', [
                 templateUrl: 'app/product/products.html',
                 controller: 'ProductsController'
               })
+              .state('myproduct', {
+                url: '/myproducts',
+                templateUrl: 'app/product/products.html',
+                controller: 'MyProductsController'
+              })
               .state('propositions', {
                 url: '/propositions',
                 templateUrl: 'app/propositions/index.html',

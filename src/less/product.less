@@ -4,6 +4,7 @@
 .product-list-item {
 
 	margin-bottom: 20px;
+	padding: 10px;
 	
 	.md-button {
 		padding: 0 !important;
@@ -56,15 +57,23 @@
 	.product-list {
 		margin: 1px;
 		cursor: pointer;
+		width: 100%;
 
 		.md-card-image {
 			height: 200px;
 			overflow: hidden;
+			text-align: center;
 
 			img {
-				position: relative;
-				top: -20px;
-				min-height: 220px;
+				
+				/*position: relative; */
+			    /* top: -20px; */
+			    max-height: 220px;
+			    /* width: 100%; */
+			    width: auto;
+			    height: auto;
+			    text-align: center;
+			    display: initial;
 			}
 
 			.label-price {
@@ -79,8 +88,17 @@
 			}
 		}
 
+		md-card-title {
+			height: 100px;
+			
+			.md-headline {
+				line-height: 20px;
+			}
+		}
+
 		md-card-content {
 			line-height: 20px;
+			height: 130px;
 		}
 	}
 }
