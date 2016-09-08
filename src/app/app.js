@@ -101,6 +101,22 @@ angular.module('dropshippers', [
                   }]
                 }
               })
+              .state('myaccount', {
+                url: '/myaccount',
+                templateUrl: 'app/profile/myaccount.html',
+                controller: 'ProfileController',
+                resolve : {
+                  'acl' : ['$q', 'AclService', function($q, AclService){
+                    if(AclService.can('view_ds')){
+                      // Has proper permissions
+                      return true;
+                    } else {
+                      // Does not have permission
+                      return $q.reject('Unauthorized');
+                    }
+                  }]
+                }
+              })
               .state('products', {
                 url: '/products',
                 templateUrl: 'app/product/products.html',
@@ -207,17 +223,16 @@ angular.module('dropshippers', [
                 });
     }])
     .run(['AclService',
-          function (AclService) {
-            console.log('---->', AclService.resume());
-              if (!AclService.resume()) {
-                var aclData = {
-                    GUEST: ['view_content'],
-                    MEMBER: ['logout', 'view_ds'],
-                    ADMIN: ['logout', 'view_ds', 'view_admin']
-                };
-                AclService.setAbilities(aclData);
-                AclService.attachRole('GUEST');
-              }
+      function (AclService) {
+        if (!AclService.resume()) {
+          var aclData = {
+              GUEST: ['view_content'],
+              MEMBER: ['logout', 'view_ds'],
+              ADMIN: ['logout', 'view_ds', 'view_admin']
+          };
+          AclService.setAbilities(aclData);
+          AclService.attachRole('GUEST');
+        }
 
     }])
     .run( ['$rootScope', '$auth', 'AclService',

@@ -1,8 +1,9 @@
 angular.module('navbar.controller', [])
-    .controller("NavbarController", ['$rootScope', '$scope', '$state', '$auth', 'AclService',
-        function ($rootScope, $scope, $state, $auth, AclService) {
+    .controller("NavbarController", ['$rootScope', '$scope', '$state', '$auth', 'AclService', 'ProfileModel',
+        function ($rootScope, $scope, $state, $auth, AclService, ProfileModel) {
             $scope.isAuthenticated = $auth.isAuthenticated();
         	$scope.$state = $state;
+            $scope.user = ProfileModel;
 
 		    $rootScope.$on("auth:logout", function (event, err) {
 	          	$auth.logout();
@@ -19,6 +20,10 @@ angular.module('navbar.controller', [])
 	          	$scope.isAuthenticated = $auth.isAuthenticated();
 	          	event.preventDefault();
 	        });
+
+            if ($scope.isAuthenticated) {
+                ProfileModel.loadUser();
+            }
 
 
         	$scope.showLogo = function (stateName) {

@@ -1,3 +1,4 @@
 angular.module('profile', [
-  'profile.service'
+  'profile.service',
+  'profile.model'
 ]);
