@@ -189,7 +189,7 @@ angular.module('dropshippers', [
                   controller: 'ProductController',
                   resolve: {
                     'acl' : ['$q', 'AclService', function($q, AclService){
-                          if(AclService.can('view_content')){
+                          if(AclService.can('view_ds')){
                           // Has proper permissions
                           return true;
                           } else {
@@ -220,8 +220,8 @@ angular.module('dropshippers', [
               }
 
     }])
-    .run( ['$rootScope', '$auth',
-      function ($rootScope, $auth) {
+    .run( ['$rootScope', '$auth', 'AclService',
+      function ($rootScope, $auth, AclService) {
         //$rootScope.isAuthenticated = $auth.isAuthenticated();
 
         if ($auth.isAuthenticated()) {
