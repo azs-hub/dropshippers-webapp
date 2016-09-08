@@ -6,5 +6,4 @@ angular.module('navbar.model', [])
     }
 
     return new consumptionFactory();
-
   });
