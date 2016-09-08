@@ -5,6 +5,11 @@ angular.module('dropshippers')
     ['$scope', '$state', 'AuthService',
       function ($scope, $state, AuthService) {
         $scope.user = {};
+
+        $scope.go = function () {
+          $state.go('home');
+        };
+        
         $scope.signin = function () {
         	console.log($scope.user);
           AuthService.register($scope.user);

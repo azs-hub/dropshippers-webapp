@@ -5,6 +5,9 @@ angular.module('dropshippers')
     ['$scope', '$state', '$auth', '$mdToast', 'AuthService',
       function ($scope, $state, $auth, $mdToast, AuthService) {
         $scope.user = null;
+        $scope.go = function () {
+          $state.go('home');
+        };
         $scope.login = function () {
           if ($scope.user != null)
           {

@@ -1,29 +1,37 @@
 angular.module('profile.model', ['profile.service'])
-  .factory('ProfileModel', function (ProfileService) {
+  .factory('ProfileModel', function (ProfileService, ProductService) {
     
     function profileModelFactory () {
 
-      this.user = {};
-      this.products = [];
-      this.shops = [];
+      this.user = null;
+      this.products = null;
+      this.shops = null;
+      this.currentShop = null;
 
       var self = this;
 
       this.loadUser = function (userId) {
-        if (!userId) {
+        if (!userId && !self.user) {
           ProfileService.getUser().then(function (res) {
             if (res.status == 200) {
               self.user = res.data.currentUser.user;
-              self.shop = res.data.currentUser.shop;
+              self.shops = [res.data.currentUser.shop];
+              self.currentShop = res.data.currentUser.shop;
+
+              ProductService.getMyProducts().then(function(res) {
+                self.products = res.local;
+              });
             }
-            console.log('user res : ', res);
-            
           });
         }
       };
 
       this.getUser = function () {
         return self.user;
+      };
+
+      this.getProducts = function () {
+        return self.products;
       };
 
       this.reset = function(userId) {
@@ -35,7 +43,6 @@ angular.module('profile.model', ['profile.service'])
         this.products = [];
         this.shops = [];
       };
-
     }
 
     return new profileModelFactory();

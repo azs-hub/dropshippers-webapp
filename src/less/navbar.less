@@ -43,19 +43,18 @@
 	}
 
 	.disconnect-button {
-		.disconnect-button-shop {
+		.button-shop {
 			display: block;
 			margin-left: 20px;
 			margin-right: 20px;
 			border: solid 1px @teal;
 			background-color: #fff;
 			color: @teal;
-			cursor: default;
 
-			&:hover {
+			&:hover, &.active {
 				border: solid 1px @teal;
-				background-color: #fff;
-				color: @teal;
+				background-color: @teal;
+				color: #fff;
 			}
 		}
 

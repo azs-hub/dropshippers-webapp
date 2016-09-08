@@ -45,18 +45,15 @@
               Inscription / Connexion
             </md-button>
 
-            <md-button ui-sref="products" ui-sref-active="{ 'active': 'products' }" class="main-navbar--link" ng-show="isAuthenticated">
+            <md-button ui-sref="products" ui-sref-active="active" class="main-navbar--link" ng-show="isAuthenticated">
               Produits
             </md-button>
-            <md-button ui-sref="propositions" class="main-navbar--link" ng-show="isAuthenticated">
+            <md-button ui-sref="propositions" ui-sref-active="active" class="main-navbar--link" ng-show="isAuthenticated">
               Partenariats
             </md-button>
-            <md-button ui-sref="myproduct" class="main-navbar--link" ng-show="isAuthenticated">
-              Mes Produits
-            </md-button>
             <md-input-container class="md-block disconnect-button" ng-show="isAuthenticated">
-              <md-button ui-sref="myaccount" class="main-navbar--link-primary disconnect-button-shop">
-                {{ user.shop.name }}
+              <md-button ui-sref="myaccount" ui-sref-active="active" class="main-navbar--link-primary button-shop">
+                {{ user.currentShop.name }}
               </md-button>
               <md-button ng-click="logout()" class="button-link disconnect-button-logout">
                 Se déconnecter

@@ -133,22 +133,6 @@ angular.module('dropshippers', [
                   }]
                 }
               })
-              .state('myproduct', {
-                url: '/myproducts',
-                templateUrl: 'app/product/products.html',
-                controller: 'MyProductsController',
-                resolve : {
-                  'acl' : ['$q', 'AclService', function($q, AclService){
-                    if(AclService.can('view_ds')){
-                      // Has proper permissions
-                      return true;
-                    } else {
-                      // Does not have permission
-                      return $q.reject('Unauthorized');
-                    }
-                  }]
-                }
-              })
               .state('propositions', {
                 url: '/propositions',
                 templateUrl: 'app/propositions/index.html',

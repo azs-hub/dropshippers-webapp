@@ -13,7 +13,7 @@ angular.module('profile.service', [])
             url: BASE_URL_API + 'login/register',
             data: datas
           }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
+              //console.log("successCallback : ", response);
               return response;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
@@ -26,7 +26,7 @@ angular.module('profile.service', [])
             method: 'GET',
             url: BASE_URL_API + 'front/user'
           }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
+              //console.log("successCallback : ", response);
               return response;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);

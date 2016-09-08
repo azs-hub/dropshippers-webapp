@@ -12,7 +12,7 @@ angular.module('product.service', [])
             method: 'GET',
             url: BASE_URL_API + 'front/common/products',
               }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
+              //console.log("successCallback : ", response);
               return response.data;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
@@ -25,7 +25,7 @@ angular.module('product.service', [])
               method: 'GET',
               url: BASE_URL_API + 'ps/16/products',
             }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
+              //console.log("successCallback : ", response);
               return response.data;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
@@ -38,7 +38,7 @@ angular.module('product.service', [])
             method: 'GET',
             url: BASE_URL_API + 'front/common/products/'+ id
           }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
+              //console.log("successCallback : ", response);
               return response;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
