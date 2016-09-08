@@ -38,12 +38,9 @@ angular.module('dropshippers', [
             if (request.skipAuthorization) {
               return request;
             }
-
             if (shared.isAuthenticated() && config.httpInterceptor(request)) {
-
               request.headers["token"] = storage.get("satellizer_token");
             }
-
             return request;
           },
           responseError: function(response) {
@@ -54,29 +51,27 @@ angular.module('dropshippers', [
     .config(['$httpProvider', function($httpProvider) {
       $httpProvider.interceptors.push('SatellizerInterceptor');
     }])
-    .config( ['$stateProvider', '$urlRouterProvider', '$authProvider', 'BASE_URL_API',
-        function($stateProvider, $urlRouterProvider, $authProvider, BASE_URL_API) {
+    .config( ['$stateProvider', '$urlRouterProvider', '$authProvider', 'BASE_URL_API', '$locationProvider',
+              function($stateProvider, $urlRouterProvider, $authProvider, BASE_URL_API, $locationProvider) {
             $urlRouterProvider.otherwise('/');
 
-            $authProvider.baseUrl = BASE_URL_API;
-            $authProvider.loginUrl = "login/signin";
-            $authProvider.tokenName = "token";
-            $authProvider.authHeader = "token";
+            $authProvider.baseUrl     = BASE_URL_API;
+            $authProvider.loginUrl    = "login/signin";
+            $authProvider.tokenName   = "token";
+            $authProvider.authHeader  = "token";
             $authProvider.tokenHeader = "token";
 
             $stateProvider
               .state('login', {
                 url: '/login',
                 templateUrl: 'app/auth/login.html',
-                controller: 'AuthController',
+                controller:  'AuthController',
                 resolve : {
-                  'acl' : ['$q', 'AclService', function($q, AclService){
-                    if(AclService.can('view_content')){
-                      // Has proper permissions
-                      return true;
+                  'acl' : ['$q', 'AclService', function($q, AclService) {
+                    if(AclService.can('view_content')) {
+                        return true;
                     } else {
-                      // Does not have permission
-                      return $q.reject('Unauthorized');
+                        return $q.reject('Unauthorized');
                     }
                   }]
                 }
@@ -86,17 +81,15 @@ angular.module('dropshippers', [
                 views: {
                   'full': {
                     templateUrl: 'app/home/index.html',
-                    controller: 'HomeController'
+                    controller:  'HomeController'
                   }
                 },
                 resolve : {
-                  'acl' : ['$q', 'AclService', function($q, AclService){
-                    if(AclService.can('view_content')){
-                      // Has proper permissions
-                      return true;
+                  'acl' : ['$q', 'AclService', function($q, AclService) {
+                    if(AclService.can('view_content')) {
+                        return true;
                     } else {
-                      // Does not have permission
-                      return $q.reject('Unauthorized');
+                        return $q.reject('Unauthorized');
                     }
                   }]
                 }
@@ -104,15 +97,13 @@ angular.module('dropshippers', [
               .state('myaccount', {
                 url: '/myaccount',
                 templateUrl: 'app/profile/myaccount.html',
-                controller: 'ProfileController',
+                controller:  'ProfileController',
                 resolve : {
-                  'acl' : ['$q', 'AclService', function($q, AclService){
-                    if(AclService.can('view_ds')){
-                      // Has proper permissions
-                      return true;
+                  'acl' : ['$q', 'AclService', function($q, AclService) {
+                    if(AclService.can('view_ds')) {
+                        return true;
                     } else {
-                      // Does not have permission
-                      return $q.reject('Unauthorized');
+                        return $q.reject('Unauthorized');
                     }
                   }]
                 }
@@ -120,15 +111,13 @@ angular.module('dropshippers', [
               .state('products', {
                 url: '/products',
                 templateUrl: 'app/product/products.html',
-                controller: 'ProductsController',
+                controller:  'ProductsController',
                 resolve : {
-                  'acl' : ['$q', 'AclService', function($q, AclService){
-                    if(AclService.can('view_ds')){
-                      // Has proper permissions
-                      return true;
+                  'acl' : ['$q', 'AclService', function($q, AclService) {
+                    if(AclService.can('view_ds')) {
+                        return true;
                     } else {
-                      // Does not have permission
-                      return $q.reject('Unauthorized');
+                        return $q.reject('Unauthorized');
                     }
                   }]
                 }
@@ -136,10 +125,10 @@ angular.module('dropshippers', [
               .state('propositions', {
                 url: '/propositions',
                 templateUrl: 'app/propositions/index.html',
-                controller: 'PropositionsController',
+                controller:  'PropositionsController',
                 resolve : {
-                  'acl' : ['$q', 'AclService', function($q, AclService){
-                    if(AclService.can('view_ds')){
+                  'acl' : ['$q', 'AclService', function($q, AclService) {
+                    if(AclService.can('view_ds')) {
                       // Has proper permissions
                       return true;
                     } else {
@@ -152,15 +141,13 @@ angular.module('dropshippers', [
               .state('signin', {
                 url: '/signin',
                 templateUrl: 'app/auth/signin.html',
-                controller: 'SigninController',
+                controller:  'SigninController',
                 resolve : {
                   'acl' : ['$q', 'AclService', function($q, AclService){
-                    if(AclService.can('view_content')){
-                      // Has proper permissions
-                      return true;
+                    if(AclService.can('view_content')) {
+                        return true;
                     } else {
-                      // Does not have permission
-                      return $q.reject('Unauthorized');
+                        return $q.reject('Unauthorized');
                     }
                   }]
                 }
@@ -172,29 +159,25 @@ angular.module('dropshippers', [
                     templateUrl: 'app/about/about.html',
                     resolve : {
                       'acl' : ['$q', 'AclService', function($q, AclService){
-                        if(AclService.can('view_content')){
-                          // Has proper permissions
-                          return true;
+                        if(AclService.can('view_content')) {
+                            return true;
                         } else {
-                        // Does not have permission
-                          return $q.reject('Unauthorized');
+                            return $q.reject('Unauthorized');
                         }
                       }]
                     }
                   }}
-                })
+              })
                 .state('detailProduct', {
                   url: '/product/:id',
                   templateUrl: 'app/product/product.html',
-                  controller: 'ProductController',
+                  controller:  'ProductController',
                   resolve: {
-                    'acl' : ['$q', 'AclService', function($q, AclService){
-                          if(AclService.can('view_ds')){
-                          // Has proper permissions
-                          return true;
+                    'acl' : ['$q', 'AclService', function($q, AclService) {
+                          if(AclService.can('view_ds')) {
+                              return true;
                           } else {
-                          // Does not have permission
-                          return $q.reject('Unauthorized');
+                              return $q.reject('Unauthorized');
                         }
                       }],
                     product: function($stateParams, ProductService) {
@@ -205,14 +188,15 @@ angular.module('dropshippers', [
                     }
                   }
                 });
+                  $locationProvider.html5Mode(true);
     }])
     .run(['AclService',
       function (AclService) {
         if (!AclService.resume()) {
           var aclData = {
-              GUEST: ['view_content'],
+              GUEST:  ['view_content'],
               MEMBER: ['logout', 'view_ds'],
-              ADMIN: ['logout', 'view_ds', 'view_admin']
+              ADMIN:  ['logout', 'view_ds', 'view_admin']
           };
           AclService.setAbilities(aclData);
           AclService.attachRole('GUEST');
@@ -221,26 +205,11 @@ angular.module('dropshippers', [
     }])
     .run( ['$rootScope', '$auth', 'AclService',
       function ($rootScope, $auth, AclService) {
-        //$rootScope.isAuthenticated = $auth.isAuthenticated();
-
-        if ($auth.isAuthenticated()) {
+          if ($auth.isAuthenticated()) {
           AclService.flushRoles();
           AclService.attachRole('MEMBER');
         }
-
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams) {
-
-          //var signupState = ['signin', 'login', 'home', 'about'];
-
-          // Authenticated user
-          //if (!$auth.isAuthenticated())
-          //{
-            //console.log('here');
-            // Asked route is "sign in" or "sign up" forms
-            //if (_.indexOf(signupState, toState.name) == -1) {
-              //$rootScope.$emit('auth:logout');
-            //}
-          //}
         });
       }
     ]);
