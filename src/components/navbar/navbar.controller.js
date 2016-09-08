@@ -1,17 +1,21 @@
 angular.module('navbar.controller', [])
-    .controller("NavbarController", ['$rootScope', '$scope', '$state', '$auth',
-        function ($rootScope, $scope, $state, $auth) {
+    .controller("NavbarController", ['$rootScope', '$scope', '$state', '$auth', 'AclService',
+        function ($rootScope, $scope, $state, $auth, AclService) {
             $scope.isAuthenticated = $auth.isAuthenticated();
         	$scope.$state = $state;
 
 		    $rootScope.$on("auth:logout", function (event, err) {
 	          	$auth.logout();
 	          	$scope.isAuthenticated = $auth.isAuthenticated();
+                AclService.flushRoles();
+                AclService.attachRole('GUEST');
 	          	$state.go('login');
 	          	event.preventDefault();
 	        });
 
 	        $rootScope.$on("auth:loged", function (event, err) {
+                AclService.flushRoles();
+                AclService.attachRole('MEMBER');
 	          	$scope.isAuthenticated = $auth.isAuthenticated();
 	          	event.preventDefault();
 	        });

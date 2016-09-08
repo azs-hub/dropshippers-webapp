@@ -68,7 +68,18 @@ angular.module('dropshippers', [
               .state('login', {
                 url: '/login',
                 templateUrl: 'app/auth/login.html',
-                controller: 'AuthController'
+                controller: 'AuthController',
+                resolve : {
+                  'acl' : ['$q', 'AclService', function($q, AclService){
+                    if(AclService.can('view_content')){
+                      // Has proper permissions
+                      return true;
+                    } else {
+                      // Does not have permission
+                      return $q.reject('Unauthorized');
+                    }
+                  }]
+                }
               })
               .state('home', {
                 url: '/',
@@ -77,65 +88,160 @@ angular.module('dropshippers', [
                     templateUrl: 'app/home/index.html',
                     controller: 'HomeController'
                   }
+                },
+                resolve : {
+                  'acl' : ['$q', 'AclService', function($q, AclService){
+                    if(AclService.can('view_content')){
+                      // Has proper permissions
+                      return true;
+                    } else {
+                      // Does not have permission
+                      return $q.reject('Unauthorized');
+                    }
+                  }]
                 }
               })
               .state('products', {
                 url: '/products',
                 templateUrl: 'app/product/products.html',
-                controller: 'ProductsController'
+                controller: 'ProductsController',
+                resolve : {
+                  'acl' : ['$q', 'AclService', function($q, AclService){
+                    if(AclService.can('view_ds')){
+                      // Has proper permissions
+                      return true;
+                    } else {
+                      // Does not have permission
+                      return $q.reject('Unauthorized');
+                    }
+                  }]
+                }
               })
               .state('myproduct', {
                 url: '/myproducts',
                 templateUrl: 'app/product/products.html',
-                controller: 'MyProductsController'
+                controller: 'MyProductsController',
+                resolve : {
+                  'acl' : ['$q', 'AclService', function($q, AclService){
+                    if(AclService.can('view_ds')){
+                      // Has proper permissions
+                      return true;
+                    } else {
+                      // Does not have permission
+                      return $q.reject('Unauthorized');
+                    }
+                  }]
+                }
               })
               .state('propositions', {
                 url: '/propositions',
                 templateUrl: 'app/propositions/index.html',
-                controller: 'PropositionsController'
+                controller: 'PropositionsController',
+                resolve : {
+                  'acl' : ['$q', 'AclService', function($q, AclService){
+                    if(AclService.can('view_ds')){
+                      // Has proper permissions
+                      return true;
+                    } else {
+                      // Does not have permission
+                      return $q.reject('Unauthorized');
+                    }
+                  }]
+                }
               })
               .state('signin', {
                 url: '/signin',
                 templateUrl: 'app/auth/signin.html',
-                controller: 'SigninController'
+                controller: 'SigninController',
+                resolve : {
+                  'acl' : ['$q', 'AclService', function($q, AclService){
+                    if(AclService.can('view_content')){
+                      // Has proper permissions
+                      return true;
+                    } else {
+                      // Does not have permission
+                      return $q.reject('Unauthorized');
+                    }
+                  }]
+                }
               })
               .state('about', {
                 url: '/about',
                 views: {
                   'full': {
-                    templateUrl: 'app/about/about.html'
+                    templateUrl: 'app/about/about.html',
+                    resolve : {
+                      'acl' : ['$q', 'AclService', function($q, AclService){
+                        if(AclService.can('view_content')){
+                          // Has proper permissions
+                          return true;
+                        } else {
+                        // Does not have permission
+                          return $q.reject('Unauthorized');
+                        }
+                      }]
+                    }
+                  }}
+                })
+                .state('detailProduct', {
+                  url: '/product/:id',
+                  templateUrl: 'app/product/product.html',
+                  controller: 'ProductController',
+                  resolve: {
+                    'acl' : ['$q', 'AclService', function($q, AclService){
+                          if(AclService.can('view_content')){
+                          // Has proper permissions
+                          return true;
+                          } else {
+                          // Does not have permission
+                          return $q.reject('Unauthorized');
+                        }
+                      }],
+                    product: function($stateParams, ProductService) {
+                      console.log($stateParams);
+                      return ProductService.getProduct($stateParams.id).then(function(res) {
+                        return res.data;
+                      });
+                    }
                   }
-                }
-              })
-              .state('detailProduct', {
-                url: '/product/:id',
-                templateUrl: 'app/product/product.html',
-                controller: 'ProductController',
-                resolve: {
-                  product: function($stateParams, ProductService) {
-                    console.log($stateParams);
-                    return ProductService.getProduct($stateParams.id).then(function(res) {
-                      return res.data;
-                    });
-                  }
-                }
-              });
+                });
+    }])
+    .run(['AclService',
+          function (AclService) {
+            console.log('---->', AclService.resume());
+              if (!AclService.resume()) {
+                var aclData = {
+                    GUEST: ['view_content'],
+                    MEMBER: ['logout', 'view_ds'],
+                    ADMIN: ['logout', 'view_ds', 'view_admin']
+                };
+                AclService.setAbilities(aclData);
+                AclService.attachRole('GUEST');
+              }
+
     }])
     .run( ['$rootScope', '$auth',
       function ($rootScope, $auth) {
         //$rootScope.isAuthenticated = $auth.isAuthenticated();
 
+        if ($auth.isAuthenticated()) {
+          AclService.flushRoles();
+          AclService.attachRole('MEMBER');
+        }
+
         $rootScope.$on("$stateChangeStart", function (event, toState, toParams) {
 
-          var signupState = ['signin', 'login', 'home', 'about'];
+          //var signupState = ['signin', 'login', 'home', 'about'];
 
           // Authenticated user
-          if (!$auth.isAuthenticated()) {
+          //if (!$auth.isAuthenticated())
+          //{
+            //console.log('here');
             // Asked route is "sign in" or "sign up" forms
-            if (_.indexOf(signupState, toState.name) == -1) {
-              $rootScope.$emit('auth:logout');
-            }
-          }
+            //if (_.indexOf(signupState, toState.name) == -1) {
+              //$rootScope.$emit('auth:logout');
+            //}
+          //}
         });
       }
     ]);
