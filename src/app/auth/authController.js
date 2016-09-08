@@ -6,7 +6,7 @@ angular.module('dropshippers')
       function ($scope, $state, $auth, $mdToast, AuthService) {
         $scope.user = null;
         $scope.login = function () {
-          if ($scope.user != null) 
+          if ($scope.user != null)
           {
             AuthService.login($scope.user)
               .then(function(response) {
@@ -15,22 +15,20 @@ angular.module('dropshippers')
                   $auth.setToken(response);
                   $scope.$emit('auth:loged');
                   $state.go('products');
-
                 }
                 else {
                   $mdToast.show(
                     $mdToast.simple()
                       .textContent('Bad credidential!')
-                      
                       .hideDelay(3000)
                   );
                   // material not good
                 }
                 //console.log("status not 200");
-                
+
               });
           }
-          
+
         };
 
         $scope.Password = 'password';

@@ -2,9 +2,9 @@
 
 angular.module('dropshippers')
   .controller('ProductController',
-    ['$scope', '$auth', 'product', 'PropositionService', 'NgTableParams', '$filter',
-      function ($scope, $auth, product, PropositionService, NgTableParams, $filter) {
-        
+              ['$scope', '$auth', 'product', 'PropositionService', 'NgTableParams', '$filter', '$mdToast',
+               function ($scope, $auth, product, PropositionService, NgTableParams, $filter, $mdToast) {
+
         $scope.product = product.product;
         $scope.propositions = [];
 
@@ -26,9 +26,18 @@ angular.module('dropshippers')
               $scope.propositions.push(proposition);
               $scope.proposition = {};
               resetProp();
-              $scope.tableParams.reload();
+                $scope.tableParams.reload();
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent('Proposition bien envoyé')
+                );
               // toast succes
             } else {
+                $mdToast.show(
+                  $mdToast.simple()
+                    .textContent('Erreur')
+                    .hideDelay(3000)
+                );
               // toastr erreur
             }
 
@@ -44,11 +53,11 @@ angular.module('dropshippers')
               "zone":[
                 {
                   "ref": 12,
-                  "name": "europe"  
+                  "name": "europe"
                 },
                 {
                   "ref": 13,
-                  "name": "asie" 
+                  "name": "asie"
                 }
               ],
               "finale":true
@@ -61,11 +70,11 @@ angular.module('dropshippers')
               "zone":[
                 {
                   "ref": 12,
-                  "name": "europe"  
+                  "name": "europe"
                 },
                 {
                   "ref": 13,
-                  "name": "asie" 
+                  "name": "asie"
                 }
               ],
               "finale":true
@@ -78,11 +87,11 @@ angular.module('dropshippers')
               "zone":[
                 {
                   "ref": 12,
-                  "name": "europe"  
+                  "name": "europe"
                 },
                 {
                   "ref": 13,
-                  "name": "asie" 
+                  "name": "asie"
                 }
               ],
               "finale":true
@@ -95,11 +104,11 @@ angular.module('dropshippers')
               "zone":[
                 {
                   "ref": 12,
-                  "name": "europe"  
+                  "name": "europe"
                 },
                 {
                   "ref": 13,
-                  "name": "asie" 
+                  "name": "asie"
                 }
               ],
               "finale":true
