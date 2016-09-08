@@ -13,7 +13,7 @@ angular.module('proposition.service', [])
             url: BASE_URL_API + 'front/user/propositions',
               }).then(function successCallback(response) {
               console.log("successCallback : ", response);
-              return response.data;
+              return response;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
               return response;
@@ -25,7 +25,7 @@ angular.module('proposition.service', [])
             method: 'GET',
             url: BASE_URL_API + 'front/user/propositions',
             params: {
-              product_ref: id
+              productRef: id
             }
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);

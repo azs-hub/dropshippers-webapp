@@ -1,3 +1,4 @@
 angular.module('proposition', [
-  'proposition.service'
+  'proposition.service',
+  'proposition.model'
 ]);
