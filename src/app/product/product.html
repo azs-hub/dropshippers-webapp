@@ -37,15 +37,24 @@
           <input type="number" ng-model="proposition.price" step="0.01" max="{{ product.price }}" />
         </md-input-container>
 
-        <md-radio-group ng-model="proposition.isWhiteMark">
-          <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
-          <md-radio-button value="false">Non</md-radio-button>
-        </md-radio-group>
+        <div class="row">
+          <div class="col-xs-6">
+            <md-radio-group ng-model="proposition.isWhiteMark">
+              <h4>Marque blanche</h4>
+              <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
+              <md-radio-button value="false">Non</md-radio-button>
+            </md-radio-group>
+          </div>
 
-        <md-radio-group ng-model="proposition.isSendDirectly">
-          <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
-          <md-radio-button value="false">Non</md-radio-button>
-        </md-radio-group>
+          <div class="col-xs-6">
+            <md-radio-group ng-model="proposition.isSendDirectly">
+              <h4>Envoie direct</h4>
+              <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
+              <md-radio-button value="false">Non</md-radio-button>
+            </md-radio-group>
+          </div>
+        </div>
+
 
         <md-input-container class="md-block">
           <label>Message</label>
@@ -57,8 +66,8 @@
             Proposition
           </button>
         </md-input-container>
-
       </div>
+
       <div class="col-xs-12">
         <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
           <tr ng-repeat="row in $data">
@@ -68,6 +77,11 @@
           </tr>
         </table>
       </div>
-    </div>
+
+      <md-input-container class="md-block">
+        <button ng-click="props()">
+          Demande de partenariat
+        </button>
+      </md-input-container>
   </div>
 </div>
