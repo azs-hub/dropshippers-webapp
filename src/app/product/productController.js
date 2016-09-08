@@ -4,12 +4,9 @@ angular.module('dropshippers')
   .controller('ProductController',
     ['$scope', '$auth', 'product', 'PropositionService', 'NgTableParams', '$filter',
       function ($scope, $auth, product, PropositionService, NgTableParams, $filter) {
-        $scope.user = {
-          isAuth: $auth.isAuthenticated()
-        };
+        
         $scope.product = product.product;
-
-console.log('$scope.product', $scope.product);
+        $scope.propositions = [];
 
         var proposition = {
           product_reference: product.product.dropshippers_ref,
@@ -17,10 +14,24 @@ console.log('$scope.product', $scope.product);
           deliveryArea: 'all'
         };
 
+        var resetProp = function() {
+          $scope.proposition = {};
+        }
+        //initProp();
+
         $scope.props = function () {
-          angular.extend($scope.proposition, proposition);
-          PropositionService.addProposition($scope.proposition).then(function(res) {
-            console.log(res);
+          angular.extend(proposition, $scope.proposition);
+          PropositionService.addProposition(proposition).then(function(res) {
+            if (res.status == 200) {
+              $scope.propositions.push(proposition);
+              $scope.proposition = {};
+              resetProp();
+              $scope.tableParams.reload();
+              // toast succes
+            } else {
+              // toastr erreur
+            }
+
           });
         };
 
@@ -97,6 +108,7 @@ console.log('$scope.product', $scope.product);
 
         PropositionService.getProposition(product.product.dropshippers_ref).then(function(res) {
             console.log('res: ', res);
+            //$scope.propositions = au data
         });
 
         $scope.tableParams = new NgTableParams({
@@ -106,29 +118,32 @@ console.log('$scope.product', $scope.product);
         counts: [],
         total: 0,
         getData: function (params) {
-          return PropositionService.getProposition(product.product.dropshippers_ref).then(function(res) {
 
-            console.log('res: ', res);
-            var data = [];
+          // return PropositionService.getProposition(product.product.dropshippers_ref).then(function(res) {
 
-            if (res.status != 200)
-              return null;
-            else {
-              if (angular.isDefined(res.data.propositions.guest))
-                angular.extend(data, res.data.propositions.guest);
-              if (angular.isDefined(res.data.propositions.host))
-                angular.extend(data, res.data.propositions.host);
-            }
+          //   console.log('res: ', res);
+          //   var data = [];
+
+          //   if (res.status != 200)
+          //     return null;
+          //   else {
+          //     if (angular.isDefined(res.data.propositions.guest))
+          //       angular.extend(data, res.data.propositions.guest);
+          //     if (angular.isDefined(res.data.propositions.host))
+          //       angular.extend(data, res.data.propositions.host);
+          //   }
+
+          console.log('---->', $scope.propositions);
 
             var filteredData = params.filter() ?
-                  $filter('filter')(data, params.filter()) :
-                  data;
+                  $filter('filter')($scope.propositions,  params.filter()) :
+                  $scope.propositions;
             var orderedData = params.sorting() ?
                 $filter('orderBy')(filteredData, params.orderBy()) :
                 filteredData;
             params.total(orderedData.length);
             return orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-          });
+          // });
         },
         paginationMaxBlocks: 5,
         paginationMinBlocks: 2
