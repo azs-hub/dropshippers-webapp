@@ -39,9 +39,9 @@ angular.module('profile.model', ['profile.service'])
       };
 
       this.clean = function() {
-        this.user = {};
-        this.products = [];
-        this.shops = [];
+        this.user = null;
+        this.products = null;
+        this.shops = null;
       };
     }
 

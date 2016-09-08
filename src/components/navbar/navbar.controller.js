@@ -10,6 +10,7 @@ angular.module('navbar.controller', [])
 	          	$scope.isAuthenticated = $auth.isAuthenticated();
                 AclService.flushRoles();
                 AclService.attachRole('GUEST');
+                ProfileModel.clean();
 	          	$state.go('login');
 	          	event.preventDefault();
 	        });
@@ -18,6 +19,7 @@ angular.module('navbar.controller', [])
                 AclService.flushRoles();
                 AclService.attachRole('MEMBER');
 	          	$scope.isAuthenticated = $auth.isAuthenticated();
+                ProfileModel.loadUser();
 	          	event.preventDefault();
 	        });
 
