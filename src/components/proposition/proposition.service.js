@@ -49,6 +49,20 @@ angular.module('proposition.service', [])
               console.log("errorCallback : ", response);
               return response;
             });
+        },
+        active: function(id, data) {
+          $log.debug('Proposition:active', id, data);
+          return $http({
+            method: 'PATCH',
+            url: BASE_URL_API + 'front/user/propositions/' + id,
+            data: data
+          }).then(function successCallback(response) {
+              console.log("successCallback : ", response);
+              return response;
+            }, function errorCallback(response) {
+              console.log("errorCallback : ", response);
+              return response;
+            });
         }
       };
     }

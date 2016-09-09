@@ -1,5 +1,3 @@
-{{ user.shop.name }}
-
 <div class="row">
   <div class="col-xs-4">
     <md-card class="product-list" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}">
@@ -23,13 +21,13 @@
     </md-card>
   </div>
 
-  <div class="col-xs-8" ng-if="user.shop.name != product.shop.name">
+  <div class="col-xs-8">
     <div class="row">
       <div class="col-xs-12">
         <h2>{{ product.name }}</h2>
         <p>{{ product.description }}</p>
       </div>
-      <div class="col-xs-12">
+      <div class="col-xs-12" ng-if="user.currentShop.name != product.shop.name">
         <md-input-container>
           <input type="hidden" ng-model="proposition.product_reference" value="{{ product.dropshippers_ref }}" />
         </md-input-container>
@@ -61,16 +59,19 @@
         </md-input-container>
 
       </div>
-      <div class="col-xs-12">
-        <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
-          <tr ng-repeat="row in $data">
-            <td data-title="'date'" sortable="'date'">{{ row.messages[0].date | date:'medium'}}</td>
-            <td data-title="'message'">{{ row.messages[0].message }}</td>
-            <td data-title="'price'" sortable="'price'">{{ row.price }}</td>
-            <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
-          </tr>
-        </table>
-      </div>
+    </div>
+    <div class="col-xs-12">
+      <button ng-click="accept_props(tableParams.data[0].RequestRef)" ng-if="user.currentShop.name != tableParams.data[0].shopHost.name">
+          Accepter la proposition
+      </button>
+      <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+        <tr ng-repeat="row in $data">
+          <td data-title="'date'" sortable="'date'">{{ row.messages[0].date | date:'medium'}}</td>
+          <td data-title="'message'">{{ row.messages[0].message }}</td>
+          <td data-title="'price'" sortable="'price'">{{ row.price }}</td>
+          <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

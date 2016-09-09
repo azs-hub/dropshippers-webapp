@@ -3,18 +3,16 @@
 angular.module('dropshippers')
   .controller('PropositionsController',
     ['$scope', '$state', '$filter', 'PropositionService', 'NgTableParams',
-      function ($scope, $state, $filter, PropositionService, NgTableParams) {
+     function ($scope, $state, $filter, PropositionService, NgTableParams) {
 
-      	$scope.tableParams = new NgTableParams({
+        $scope.tableParams = new NgTableParams({
           count: 10,
           sorting: {date: "asc"}
         }, {
           counts: [],
           total: 0,
           getData: function (params) {
-
             return PropositionService.getPropositions().then(function(res) {
-
               if (res.status != 200)
                 return null;
               else {
@@ -33,7 +31,7 @@ angular.module('dropshippers')
         paginationMaxBlocks: 5,
         paginationMinBlocks: 2
         });
-        
+
       }
     ]
   );

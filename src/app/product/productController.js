@@ -12,6 +12,15 @@ angular.module('dropshippers')
         $scope.user = ProfileModel;
         ProfileModel.loadUser();
 
+        $scope.accept_props = function (id) {
+          var data = [{ "op": "replace", "path" : "/status", "value" : "accepted"}];
+          PropositionService.active(id, data).then(function(res) {
+            //if (res.status == 200)
+
+          });
+          console.log("hey marc");
+        };
+
         var proposition = {
           product_reference: product.product.dropshippers_ref,
           quantity: 1,
@@ -23,9 +32,8 @@ angular.module('dropshippers')
         }
 
         $scope.props = function () {
-          console.log($scope.proposition, $scope.propositions);
-          angular.extend(proposition, $scope.proposition);
-          PropositionService.addProposition(proposition).then(function(res) {
+            angular.extend(proposition, $scope.proposition);
+            PropositionService.addProposition(proposition).then(function(res) {
             if (res.status == 200) {
               $scope.propositions.propositions.push(proposition);
               $scope.proposition = {};
@@ -35,14 +43,12 @@ angular.module('dropshippers')
                   $mdToast.simple()
                     .textContent('Proposition bien envoyé')
                 );
-              // toast succes
             } else {
                 $mdToast.show(
                   $mdToast.simple()
                     .textContent('Erreur')
                     .hideDelay(3000)
                 );
-              // toastr erreur
             }
 
           });
