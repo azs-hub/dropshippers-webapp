@@ -6,13 +6,14 @@ angular.module('dropshippers')
                function ($scope, $auth, product, PropositionService, PropositionModel, ProfileModel, NgTableParams, $filter, $mdToast) {
 
         $scope.product = product.product;
+        $scope.proposition = {};
         $scope.propositions = PropositionModel;
         PropositionModel.load();
         $scope.user = ProfileModel;
         ProfileModel.loadUser();
 
         var proposition = {
-          product_reference: product.product.dropshippersRef,
+          product_reference: product.product.dropshippers_ref,
           quantity: 1,
           deliveryArea: 'all'
         };
@@ -22,10 +23,11 @@ angular.module('dropshippers')
         }
 
         $scope.props = function () {
+          console.log($scope.proposition, $scope.propositions);
           angular.extend(proposition, $scope.proposition);
           PropositionService.addProposition(proposition).then(function(res) {
             if (res.status == 200) {
-              $scope.propositions.push(proposition);
+              $scope.propositions.propositions.push(proposition);
               $scope.proposition = {};
               resetProp();
                 $scope.tableParams.reload();
@@ -60,8 +62,8 @@ angular.module('dropshippers')
                 return null;
               else if (res.data.propositions.length > 0) {
                 var filteredData = params.filter() ?
-                      $filter('filter')(res.data.propositions[0],  params.filter()) :
-                      res.data.propositions[product.product.dropshippers_ref];
+                      $filter('filter')(res.data.propositions,  params.filter()) :
+                      res.data.propositions;
                 var orderedData = params.sorting() ?
                     $filter('orderBy')(filteredData, params.orderBy()) :
                     filteredData;
