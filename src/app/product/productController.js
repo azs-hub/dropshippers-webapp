@@ -2,15 +2,17 @@
 
 angular.module('dropshippers')
   .controller('ProductController',
-              ['$scope', '$auth', 'product', 'PropositionService', 'PropositionModel', 'NgTableParams', '$filter', '$mdToast',
-               function ($scope, $auth, product, PropositionService, PropositionModel, NgTableParams, $filter, $mdToast) {
+              ['$scope', '$auth', 'product', 'PropositionService', 'PropositionModel', 'ProfileModel', 'NgTableParams', '$filter', '$mdToast',
+               function ($scope, $auth, product, PropositionService, PropositionModel, ProfileModel, NgTableParams, $filter, $mdToast) {
 
         $scope.product = product.product;
         $scope.propositions = PropositionModel;
         PropositionModel.load();
+        $scope.user = ProfileModel;
+        ProfileModel.loadUser();
 
         var proposition = {
-          product_reference: product.product.dropshippers_ref,
+          product_reference: product.product.dropshippersRef,
           quantity: 1,
           deliveryArea: 'all'
         };
@@ -56,9 +58,9 @@ angular.module('dropshippers')
 
               if (res.status != 200)
                 return null;
-              else {
+              else if (res.data.propositions.length > 0) {
                 var filteredData = params.filter() ?
-                      $filter('filter')(res.data.propositions[product.product.dropshippers_ref],  params.filter()) :
+                      $filter('filter')(res.data.propositions[0],  params.filter()) :
                       res.data.propositions[product.product.dropshippers_ref];
                 var orderedData = params.sorting() ?
                     $filter('orderBy')(filteredData, params.orderBy()) :
