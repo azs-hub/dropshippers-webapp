@@ -50,7 +50,7 @@ angular.module('dropshippers')
 
         $scope.tableParams = new NgTableParams({
           count: 10,
-          sorting: {idEntity: "asc"}
+          sorting: {date: "asc"}
         }, {
           counts: [],
           total: 0,
