@@ -1,7 +1,9 @@
 {
   "name": "dropshippers",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "phantomjs": "^2.1.7"
+  },
   "devDependencies": {
     "browser-sync": "~1.7.1",
     "chalk": "~0.5.1",
