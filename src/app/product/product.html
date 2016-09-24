@@ -59,8 +59,7 @@
         </md-input-container>
 
       </div>
-    </div>
-    <div class="col-xs-12">
+      <div class="col-xs-12">
       <button ng-click="accept_props(tableParams.data[0].RequestRef)" ng-if="user.currentShop.name != tableParams.data[0].shopHost.name">
           Accepter la proposition
       </button>
@@ -72,6 +71,7 @@
           <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
         </tr>
       </table>
+    </div>
     </div>
   </div>
 </div>
