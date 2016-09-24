@@ -13,6 +13,8 @@ angular.module('dropshippers', [
   'ngAria',
   'ngLodash',
   'ngTable',
+  'translate',
+  'toastr',
   'satellizer',
   'mm.acl'])
 
@@ -192,6 +194,67 @@ angular.module('dropshippers', [
       });
       $locationProvider.html5Mode(true);
   }])
+
+  // toastr config
+  .config(function (toastrConfig) {
+    angular.extend(toastrConfig, {
+      autoDismiss: false,
+      containerId: 'toast-container',
+      maxOpened: 0,
+      newestOnTop: true,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+      preventOpenDuplicates: true,
+      target: 'body',
+
+      allowHtml: false,
+      closeButton: false,
+      closeHtml: '<button>&times;</button>',
+      extendedTimeOut: 1000,
+      iconClasses: {
+        error: 'toast-error',
+        info: 'toast-info',
+        success: 'toast-success',
+        warning: 'toast-warning'
+      },
+      messageClass: 'toast-message',
+      onHidden: null,
+      onShown: null,
+      onTap: null,
+      progressBar: true,
+      tapToDismiss: true,
+      templates: {
+        toast: 'directives/toast/toast.html',
+        progressbar: 'directives/progressbar/progressbar.html'
+      },
+      timeOut: 5000,
+      titleClass: 'toast-title',
+      toastClass: 'toast'
+    });
+  })
+
+  // Interceptor config
+  .config(function ($httpProvider) {
+    
+    function authInterceptor($rootScope) {
+      return {
+        responseError: function (rejection) {
+          // 403 or 401: logout
+          alert('response error');
+          if (403 === rejection.status || (401 === rejection.status && 'ERR_FUNC_ACCESS_DENIED' === rejection.data.code) || -1 === rejection.status || (500 === rejection.status && 'ERR_FUNC_INVALID_TOKEN' === rejection.data.code)) {
+            $rootScope.$emit('auth:error', rejection);
+          }
+          else if (rejection.status !== 401 && rejection.status < 600 && rejection.status > 400) {
+            // show toastr error if isset tanslation for code error
+            $rootScope.$emit('http:error', rejection);
+          }
+
+          return rejection;
+        }
+      }
+    }
+    $httpProvider.interceptors.push(authInterceptor);
+  })
   
   // Config Acl role
   .run(['AclService',
@@ -209,13 +272,32 @@ angular.module('dropshippers', [
   }])
 
   // app run
-  .run( ['$rootScope', '$auth', 'AclService',
-    function ($rootScope, $auth, AclService) {
-        if ($auth.isAuthenticated()) {
+  .run( ['$rootScope', '$auth', '$filter', 'AclService', 'toastr',
+    function ($rootScope, $auth, $filter, AclService, toastr) {
+      if ($auth.isAuthenticated()) {
         AclService.flushRoles();
         AclService.attachRole('MEMBER');
       }
-      // $rootScope.$on("$stateChangeStart", function (event, toState, toParams) {
-      // });
+
+      // auth error logout
+      $rootScope.$on("auth:error", function (event, err) {
+        console.log('auth:error entered');
+        $rootScope.$broadcast('auth:logout');
+        if(err && (err.status == 403 || err.status == -1)) {
+          toastr.error($filter('translate')('HTTP_403'));
+        } else {
+          toastr.error($filter('translate')('HTTP_401'));
+        }
+        event.preventDefault();
+      });
+      
+      // show toastr error
+      $rootScope.$on("http:error", function (event, err) {
+        if(err && angular.isDefined(err.data) && err.data !== null && angular.isDefined(err.data.code) && err.data.code !== null
+        && $filter('translate')(err.data.code) !== err.data.code) {
+          toastr.error($filter('translate')(err.data.code));
+        }
+        event.preventDefault();
+      });
     }
   ]);
