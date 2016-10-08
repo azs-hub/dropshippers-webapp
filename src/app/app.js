@@ -15,6 +15,7 @@ angular.module('dropshippers', [
   'ngTable',
   'translate',
   'toastr',
+  'bw.paging',
   'satellizer',
   'mm.acl'])
 
@@ -240,8 +241,8 @@ angular.module('dropshippers', [
       return {
         responseError: function (rejection) {
           // 403 or 401: logout
-          alert('response error');
-          if (403 === rejection.status || (401 === rejection.status && 'ERR_FUNC_ACCESS_DENIED' === rejection.data.code) || -1 === rejection.status || (500 === rejection.status && 'ERR_FUNC_INVALID_TOKEN' === rejection.data.code)) {
+          console.log('response error', rejection);
+          if (403 === rejection.status && angular.isDefined(rejection.data) && rejection.data.code != 10001 || (401 === rejection.status && 'ERR_FUNC_ACCESS_DENIED' === rejection.data.code) || -1 === rejection.status || (500 === rejection.status && 'ERR_FUNC_INVALID_TOKEN' === rejection.data.code)) {
             $rootScope.$emit('auth:error', rejection);
           }
           else if (rejection.status !== 401 && rejection.status < 600 && rejection.status > 400) {
