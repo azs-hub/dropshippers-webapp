@@ -1,6 +1,7 @@
 angular.module('navbar.controller', [])
-    .controller("NavbarController", ['$rootScope', '$scope', '$state', '$auth', 'AclService', 'ProfileModel',
-        function ($rootScope, $scope, $state, $auth, AclService, ProfileModel) {
+    .controller("NavbarController", ['$rootScope', '$scope', '$state', '$auth', '$translatePartialLoader', 'AclService', 'ProfileModel',
+        function ($rootScope, $scope, $state, $auth, $translatePartialLoader, AclService, ProfileModel) {
+            $translatePartialLoader.addPart('navbar');
             $scope.isAuthenticated = $auth.isAuthenticated();
             $scope.$state = $state;
             $scope.user = ProfileModel;

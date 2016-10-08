@@ -9,27 +9,27 @@
       <div class="col-xs-8 col-xs-offset-2">
 
         <md-input-container class="md-icon-float md-block">
-          <label>Pseudo</label>
+          <label>{{ 'LABEL.USERNAME' | translate }}</label>
           <input ng-model="user.username" type="text" ng-required="true">
         </md-input-container>
 
         <md-input-container class="md-block">
-          <label>Email</label>
+          <label>{{ 'LABEL.EMAIL' | translate }}</label>
           <input ng-model="user.email" type="email" ng-required="true">
         </md-input-container>
 
         <md-input-container class="md-block">
-          <label>Mot de passe</label>
+          <label>{{ 'LABEL.PASSWORD' | translate }}</label>
           <input ng-model="user.password" type="password" ng-required="true">
         </md-input-container>
 
         <md-input-container class="md-block">
-          <label>Nom de votre boutique</label>
-          <input ng-model="user.shop_name" type="shop_name"  ng-required="true">
+          <label>{{ 'LABEL.SHOP_NAME' | translate }}</label>
+          <input ng-model="user.shop_name" type="text"  ng-required="true">
         </md-input-container>
 
         <md-input-container class="md-block">
-          <md-button class="md-accent md-raised" type="submit" ng-click="signin()">Créer un compte</md-button>
+          <md-button class="md-accent md-raised" type="submit" ng-click="signin()">{{ 'LABEL.CREATE_ACCOUNT' | translate }}</md-button>
         </md-input-container>
 
       </div>

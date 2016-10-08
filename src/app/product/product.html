@@ -8,11 +8,11 @@
         </md-card-avatar>
         <md-card-header-text>
           <span class="md-title">{{ product.shop.name }}</span>
-          <span class="md-subhead">Type de produit</span>
+          <span class="md-subhead">{{ product.categories[0].name }}</span>
         </md-card-header-text>
       </md-card-header>
       <div class="md-card-image">
-        <img ng-src="/assets/images/produit-1.jpg" alt="Washed Out">
+        <img ng-src="{{ product.image }}" alt="Washed Out">
       </div>
       <md-card-title>
       </md-card-title>
@@ -59,16 +59,32 @@
         </md-input-container>
 
       </div>
-      <div class="col-xs-12">
-      <button ng-click="accept_props(tableParams.data[0].RequestRef)" ng-if="user.currentShop.name != tableParams.data[0].shopHost.name">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- <button ng-click="accept_props(tableParams.data[0].RequestRef)" ng-if="user.currentShop.name != tableParams.data[0].shopHost.name">
           Accepter la proposition
-      </button>
+      </button> -->
       <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
-        <tr ng-repeat="row in $data">
-          <td data-title="'date'" sortable="'date'">{{ row.messages[0].date | date:'medium'}}</td>
-          <td data-title="'message'">{{ row.messages[0].message }}</td>
-          <td data-title="'price'" sortable="'price'">{{ row.price }}</td>
-          <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
+        <tr ng-repeat="row in $data track by $index">
+          <td data-title="'date'" sortable="'created_at'">{{ row.created_at | date:'medium'}}</td>
+          <td data-title="'from'">{{ row.from[0].name }}</td>
+          <td data-title="'message'">{{ row.content }}</td>
+          <td data-title="'price'">{{ row.price }}</td>
+          <td data-title="'isSendDirectly'">{{ row.isSendDirectly }}</td>
+          <td data-title="'isWhiteMark'">{{ row.isWhiteMark }}</td>
+          <td data-title="'deliveryArea'">
+
+            <span ng-repeat="country in row.deliveryArea">{{ country.name }}</span>
+
+          </td>
+          <td data-title="'action'">
+            <button ng-show="row.propositionRef == lastProposition.propositionRef"
+              ng-click="accept_props()">
+          Accepter la proposition
+            </button>
+          </td>
         </tr>
       </table>
     </div>

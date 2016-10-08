@@ -37,27 +37,27 @@
             </a>
             <span flex></span>
             <md-button ui-sref="about" ui-sref-active="active" class="main-navbar--link" ng-show="!isAuthenticated">
-              À propos
+              {{ 'ABOUT' | translate }}
             </md-button>
             <!-- <md-button ui-sref="home" ui-sref-active="active" class="main-navbar--link" ng-show="!isAuthenticated">
               Actualités
             </md-button> -->
             <md-button ui-sref="login" class="main-navbar--link-primary" ng-show="!isAuthenticated">
-              Inscription / Connexion
+              {{ 'INSCRIPTION' | translate }}
             </md-button>
 
             <md-button ui-sref="products" ui-sref-active="active" class="main-navbar--link" ng-show="isAuthenticated">
-              Produits
+              {{ 'PRODUCTS' | translate }}
             </md-button>
             <md-button ui-sref="propositions" ui-sref-active="active" class="main-navbar--link" ng-show="isAuthenticated">
-              Partenariats
+              {{ 'PARTNERS' | translate }}
             </md-button>
             <md-input-container class="md-block disconnect-button" ng-show="isAuthenticated">
               <md-button ui-sref="myaccount" ui-sref-active="active" class="main-navbar--link-primary button-shop">
                 {{ user.shop.name }}
               </md-button>
               <md-button ng-click="logout()" class="button-link disconnect-button-logout">
-                Se déconnecter
+                {{ 'LOGOUT' | translate }}
               </md-button>
             </md-input-container>
           </div>

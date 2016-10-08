@@ -1,6 +1,6 @@
 angular.module("local.config", [])
 
-.constant("BASE_URL_API", "http://api.dropshippers.io/v1/")
+.constant("BASE_URL_API", "http://dropshippers.dev/v1/")
 
 .constant("BASE_ORIGIN_URL", "http://localhost:3000")
 

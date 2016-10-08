@@ -44,12 +44,12 @@
           </md-card-avatar>
           <md-card-header-text>
             <span class="md-title">{{ product.shopName }}</span>
-            <span class="md-subhead">Type de produit</span>
+            <span class="md-subhead">{{ product.categories[0].name }}</span>
           </md-card-header-text>
         </md-card-header>
         <div class="md-card-image">
-          <img ng-src="/assets/images/produit-1.jpg" alt="Washed Out" ng-if="product.images.length == 0">
-          <img ng-src="{{ product.images[0].link }}" alt="Washed Out" ng-if="product.images.length > 0">
+          <!-- <img ng-src="/assets/images/produit-1.jpg" alt="Washed Out" ng-if="product.images.length == 0"> -->
+          <img ng-src="{{ product.image }}" alt="Washed Out">
           <span class="label-price">{{ product.quantity }} Pièces</span>
         </div>
         <md-card-title>

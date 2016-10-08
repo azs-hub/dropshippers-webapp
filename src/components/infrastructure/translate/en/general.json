@@ -3,5 +3,15 @@
   "HTTP_403": "Service unavailable. Please retry later",
   "CODE": {
   	"10001": "Invalid credentials"
+  },
+  "LABEL": {
+  	"EMAIL": "Email",
+  	"USERNAME": "Username",
+  	"PASSWORD": "Password",
+  	"SIGNIN": "Sigin",
+  	"CREATE_ACCOUNT": "Create accound",
+  	"SIGNIN": "Signin",
+  	"SHOP_NAME": "Shop name",
+  	"CONNEXION": "Connexion"
   }
 }

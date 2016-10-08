@@ -3,5 +3,14 @@
   "HTTP_403": "Le service est indisponible pour le moment, veuillez réessayer plus tard.",
   "CODE": {
   	"10001": "Connexion incorrect"
+  },
+  "LABEL": {
+  	"EMAIL": "Email",
+  	"USERNAME": "Identifiant",
+  	"PASSWORD": "Mot de passe",
+  	"CREATE_ACCOUNT": "Créer un compte",
+  	"SIGNIN": "Inscription",
+  	"SHOP_NAME": "Nom de votre boutique",
+  	"CONNEXION": "Connexion"
   }
 }
