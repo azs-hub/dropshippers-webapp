@@ -13,10 +13,10 @@ angular.module('dropshippers', [
   'ngAria',
   'ngLodash',
   'ngTable',
-  'translate',
   'toastr',
   'bw.paging',
   'satellizer',
+  'pascalprecht.translate',
   'mm.acl'])
 
   // config theme material
@@ -256,6 +256,20 @@ angular.module('dropshippers', [
     }
     $httpProvider.interceptors.push(authInterceptor);
   })
+
+  // Translate config
+  .config(function ($translateProvider, $translatePartialLoaderProvider) {
+    
+    
+    $translateProvider.preferredLanguage('fr');
+    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.useLoaderCache(true);
+
+    $translateProvider.useLoader('$translatePartialLoader', {
+      urlTemplate: '/components/infrastructure/translate/{lang}/{part}.json'
+    });
+    $translatePartialLoaderProvider.addPart('general');
+  })
   
   // Config Acl role
   .run(['AclService',
@@ -296,9 +310,14 @@ angular.module('dropshippers', [
       $rootScope.$on("http:error", function (event, err) {
         if(err && angular.isDefined(err.data) && err.data !== null && angular.isDefined(err.data.code) && err.data.code !== null
         && $filter('translate')(err.data.code) !== err.data.code) {
-          toastr.error($filter('translate')(err.data.code));
+          toastr.error($filter('translate')('CODE.' + err.data.code));
         }
         event.preventDefault();
+      });
+
+      // load partial on loaded
+      $rootScope.$on('$translatePartialLoaderStructureChanged', function () {
+        $translate.refresh();
       });
     }
   ]);

@@ -1,8 +1,8 @@
 angular.module("local.config", [])
 
-.constant("BASE_URL_API", "http://192.168.51.51/v1/")
+.constant("BASE_URL_API", "http://api.dropshippers.io/v1/")
 
-.constant("BASE_ORIGIN_URL", "http://192.168.33.10:3000")
+.constant("BASE_ORIGIN_URL", "http://localhost:3000")
 
 .constant("FACEBOOK_APP_ID", "635046646660468")
 
