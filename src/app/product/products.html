@@ -50,18 +50,18 @@
         <div class="md-card-image">
           <img ng-src="/assets/images/produit-1.jpg" alt="Washed Out" ng-if="product.images.length == 0">
           <img ng-src="{{ product.images[0].link }}" alt="Washed Out" ng-if="product.images.length > 0">
-          <span class="label-price">{{ product.price }} € / Pièce</span>
+          <span class="label-price">{{ product.quantity }} Pièces</span>
         </div>
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{ product.name }}</span>
           </md-card-title-text>
         </md-card-title>
-        <md-card-content>
+        <!-- <md-card-content>
           <p>
             {{ product.description | limitTo:150 }} ...
           </p>
-        </md-card-content>
+        </md-card-content> -->
       </md-card>
     </md-list-item>
   </div>

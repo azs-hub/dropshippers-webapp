@@ -17,16 +17,13 @@ angular.module('dropshippers')
           prixMax: null
         };
         $scope.user = ProfileModel;
-        ProfileModel.load();
+        ProfileModel.loadUser();
 
-        // if ($auth.isAuthenticated()) {
         ProductService.getProducts().then(function(res) {
           $scope.products = res.products;
           $scope.total = res.products.length;
           $scope.pageSize = res.products.length / 3;
         });
-
-        // }
 
         $scope.go = function (productId) {
           $state.go('detailProduct', {id: productId});

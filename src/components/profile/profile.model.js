@@ -5,8 +5,7 @@ angular.module('profile.model', ['profile.service'])
 
       this.user = null;
       this.products = null;
-      this.shops = null;
-      this.currentShop = null;
+      this.shop = null;
 
       var self = this;
 
@@ -15,8 +14,7 @@ angular.module('profile.model', ['profile.service'])
           ProfileService.getUser().then(function (res) {
             if (res.status == 200) {
               self.user = res.data.currentUser.user;
-              self.shops = [res.data.currentUser.shop];
-              self.currentShop = res.data.currentUser.shop;
+              self.shop = res.data.currentUser.shop;
 
               ProductService.getMyProducts().then(function(res) {
                 self.products = res.local;
@@ -41,7 +39,7 @@ angular.module('profile.model', ['profile.service'])
       this.clean = function() {
         self.user = null;
         self.products = null;
-        self.shops = null;
+        self.shop = null;
       };
     }
 
