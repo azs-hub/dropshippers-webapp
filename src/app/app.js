@@ -304,7 +304,7 @@ angular.module('dropshippers', [
     $translateProvider.useLoaderCache(true);
 
     $translateProvider.useLoader('$translatePartialLoader', {
-      urlTemplate: '/components/infrastructure/translate/{lang}/{part}.json'
+      urlTemplate: '/assets/translate/{lang}/{part}.json'
     });
     $translatePartialLoaderProvider.addPart('general');
   })
