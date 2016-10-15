@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dropshippers')
+angular.module('auth.controller', [])
   .controller('AuthController',
     ['$scope', '$state', '$auth', '$mdToast', 'AuthService',
       function ($scope, $state, $auth, $mdToast, AuthService) {
@@ -20,14 +20,13 @@ angular.module('dropshippers')
                   $state.go('products');
                 }
                 else {
-                  $mdToast.show(
-                    $mdToast.simple()
-                      .textContent('Bad credidential!')
-                      .hideDelay(3000)
-                  );
-                  // material not good
+                  // toastr.error($filter('translate')('HTTP_403'));
+                  // $mdToast.show(
+                  //   $mdToast.simple()
+                  //     .textContent('Bad credidential!')
+                  //     .hideDelay(3000)
+                  // );
                 }
-                //console.log("status not 200");
 
               });
           }

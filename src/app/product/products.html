@@ -5,6 +5,26 @@
   </div>
 </div>
 
+
+<div class="row mgT10 mgB10">
+  <div class="col-xs-12">
+    <md-input-container>
+      <label>Nom du produit</label>
+      <input ng-model="search.productName" />
+    </md-input-container>
+
+    <md-input-container>
+      <label>Prix min</label>
+      <input ng-model="search.prixMin" type="number" />
+    </md-input-container>
+
+    <md-input-container>
+      <label>Prix max</label>
+      <input ng-model="search.prixMax" type="number" />
+    </md-input-container>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-xs-3" ng-repeat="product in products track by $index">
     <md-list-item class="product-list-item" ng-click="go(product.dropshippers_ref)">
@@ -24,37 +44,32 @@
           </md-card-avatar>
           <md-card-header-text>
             <span class="md-title">{{ product.shopName }}</span>
-            <span class="md-subhead">Type de produit</span>
+            <span class="md-subhead">{{ product.categories[0].name }}</span>
           </md-card-header-text>
         </md-card-header>
         <div class="md-card-image">
-          <img ng-src="/assets/images/produit-1.jpg" alt="Washed Out" ng-if="product.images.length == 0">
-          <img ng-src="{{ product.images[0].link }}" alt="Washed Out" ng-if="product.images.length > 0">
-          <span class="label-price">{{ product.price }} € / Pièce</span>
+          <!-- <img ng-src="/assets/images/produit-1.jpg" alt="Washed Out" ng-if="product.images.length == 0"> -->
+          <img ng-src="{{ product.image }}" alt="Washed Out">
+          <span class="label-price">{{ product.quantity }} Pièces</span>
         </div>
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{ product.name }}</span>
           </md-card-title-text>
         </md-card-title>
-        <md-card-content>
+        <!-- <md-card-content>
           <p>
             {{ product.description | limitTo:150 }} ...
           </p>
-        </md-card-content>
+        </md-card-content> -->
       </md-card>
     </md-list-item>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-3">
-    <ul>
-      <li ng-repeat="proposition in propositions track by $index">
-        <a>
-          {{ proposition }}
-        </a>
-      </li>
-    </ul>
-  </div>
+  <!-- <paging
+      page="currentPage" 
+      page-size="pageSize" 
+      total="total"
+      pg-href="#GotoPage-{page}"
+      paging-action="paginateProducts(currentpage, pageSize, total)">
+    </paging>   -->
 </div>

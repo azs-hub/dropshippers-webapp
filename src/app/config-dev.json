@@ -1,6 +1,6 @@
 {
-  "BASE_URL_API": "http://192.168.51.51/v1/",
-  "BASE_ORIGIN_URL": "http://192.168.33.10:3000",
+  "BASE_URL_API": "http://dropshippers.dev/v1/",
+  "BASE_ORIGIN_URL": "http://localhost:3000",
   "FACEBOOK_APP_ID": "635046646660468",
   "FACEBOOK_SDK_VERSION": "v2.6",
   "ENV": "dev",
