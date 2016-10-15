@@ -2,12 +2,15 @@
 
 angular.module('dropshippers')
   .controller('ProductController',
-              ['$scope', '$auth', 'product', 'PropositionService', 'PropositionModel', 'NgTableParams', '$filter', '$mdToast',
-               function ($scope, $auth, product, PropositionService, PropositionModel, NgTableParams, $filter, $mdToast) {
+              ['$scope', '$auth', 'product', 'PropositionService', 'PropositionModel', 'ProfileModel', 'NgTableParams', '$filter', '$mdToast',
+               function ($scope, $auth, product, PropositionService, PropositionModel, ProfileModel, NgTableParams, $filter, $mdToast) {
 
         $scope.product = product.product;
+        $scope.proposition = {};
         $scope.propositions = PropositionModel;
         PropositionModel.load();
+        $scope.user = ProfileModel;
+        ProfileModel.loadUser();
 
         var proposition = {
           product_reference: product.product.dropshippers_ref,
@@ -20,10 +23,11 @@ angular.module('dropshippers')
         }
 
         $scope.props = function () {
+          console.log($scope.proposition, $scope.propositions);
           angular.extend(proposition, $scope.proposition);
           PropositionService.addProposition(proposition).then(function(res) {
             if (res.status == 200) {
-              $scope.propositions.push(proposition);
+              $scope.propositions.propositions.push(proposition);
               $scope.proposition = {};
               resetProp();
                 $scope.tableParams.reload();
@@ -56,10 +60,10 @@ angular.module('dropshippers')
 
               if (res.status != 200)
                 return null;
-              else {
+              else if (res.data.propositions.length > 0) {
                 var filteredData = params.filter() ?
-                      $filter('filter')(res.data.propositions[product.product.dropshippers_ref],  params.filter()) :
-                      res.data.propositions[product.product.dropshippers_ref];
+                      $filter('filter')(res.data.propositions,  params.filter()) :
+                      res.data.propositions;
                 var orderedData = params.sorting() ?
                     $filter('orderBy')(filteredData, params.orderBy()) :
                     filteredData;

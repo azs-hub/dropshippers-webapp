@@ -18,17 +18,10 @@ angular.module('dropshippers')
               if (res.status != 200)
                 return null;
               else {
-              	
-              	var data = [];
-
-              	for (var i in res.data.propositions) {
-              		_.sortBy(res.data.propositions[i], function(o) { return o.updated_at; })
-              		data.push(res.data.propositions[i][0]);
-              	}
-
                 var filteredData = params.filter() ?
-                      $filter('filter')(data,  params.filter()) :
-                      data;
+                      $filter('filter')(res.data.propositions,  params.filter()) :
+                      res.data.propositions;
+
                 var orderedData = params.sorting() ?
                     $filter('orderBy')(filteredData, params.orderBy()) :
                     filteredData;
