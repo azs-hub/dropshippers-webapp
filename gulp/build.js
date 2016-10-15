@@ -78,6 +78,11 @@ gulp.task('json', function () {
     .pipe(gulp.dest(paths.dist + '/assets/json/'));
 });
 
+gulp.task('translate', function () {
+  return gulp.src(paths.src + '/assets/translate/**/*')
+    .pipe(gulp.dest(paths.dist + '/assets/translate/'));
+});
+
 gulp.task('fonts', function () {
   return gulp.src($.mainBowerFiles())
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
@@ -104,4 +109,4 @@ gulp.task('clean', function (done) {
   $.del([paths.dist + '/', paths.tmp + '/'], done);
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'misc', 'fontshf', 'icons', 'json', 'configfile']);
+gulp.task('build', ['html', 'images', 'fonts', 'misc', 'fontshf', 'icons', 'json', 'translate', 'configfile']);
