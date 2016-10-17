@@ -160,6 +160,11 @@ angular.module('dropshippers', [
             return CategoryService.getAll().then(function(res) {
               return res.data;
             });
+          },
+          productList: function(ProductService) {
+            return ProductService.getProducts().then(function(res) {
+              return res;
+            });
           }
         }
       })

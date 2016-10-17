@@ -6,14 +6,15 @@ angular.module('product.service', [])
 
       // Public API here
       return {
-        getProducts: function() {
+        getProducts: function(search) {
           $log.debug('Product:getProducts');
           return $http({
-            method: 'GET',
-            url: BASE_URL_API + 'front/common/products',
-              }).then(function successCallback(response) {
+              method: 'GET',
+              url: BASE_URL_API + 'front/common/products',
+              params: search
+            }).then(function successCallback(response) {
               //console.log("successCallback : ", response);
-              return response.data;
+              return response.data.products;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
               return response;
