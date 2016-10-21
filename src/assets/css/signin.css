@@ -7,4 +7,4 @@
     color: dodgerblue; }
   .inputdemoIcons md-input-container.md-input-invalid > md-icon.email,
   .inputdemoIcons md-input-container.md-input-invalid > md-icon.name {
-    color: red; }
+      color: red; }

@@ -12,6 +12,7 @@
   	"CREATE_ACCOUNT": "Create accound",
   	"SIGNIN": "Signin",
   	"SHOP_NAME": "Shop name",
-  	"CONNEXION": "Connexion"
+        "CONNEXION": "Connexion",
+        "TOKEN": "Token"
   }
 }

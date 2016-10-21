@@ -25,7 +25,14 @@
 
         <md-input-container class="md-block">
           <label>{{ 'LABEL.SHOP_NAME' | translate }}</label>
-          <input ng-model="user.shop_name" type="text"  ng-required="true">
+          <input ng-model="user.shop_name" type="text"  ng-required="!user.token">
+        </md-input-container>
+
+        <div class="else">OU</div>
+
+        <md-input-container class="md-block">
+          <label>{{ 'LABEL.TOKEN' | translate }}</label>
+          <input ng-model="user.token" type="text" ng-regquired="!user.shop_name">
         </md-input-container>
 
         <md-input-container class="md-block">
