@@ -1,1 +1,75 @@
 {{ user }}
+
+<!-- Partners forms -->
+<div class="row">
+  	<div class="col-xs-12">
+	  	<h3>Your personnal information</h3>
+	  	<div class="row">
+  			<div class="col-xs-6">
+	  			<md-input-container class="md-block">
+			    	<label>{{ 'LABEL.USERNAME' | translate }}</label>
+			      	<input type="text" ng-model="user.user.username" ng-disabled="true" />
+			    </md-input-container>
+
+			    <md-input-container class="md-block">
+			      <label>{{ 'LABEL.EMAIL' | translate }}</label>
+			      <input type="email" ng-model="user.user.email" required />
+			    </md-input-container>
+  			</div>
+
+  			<div class="col-xs-6">
+  				<md-input-container class="md-block">
+			      <label>{{ 'LABEL.PASSWORD' | translate }}</label>
+			      <input type="password" ng-model="user.user.password" required />
+			    </md-input-container>
+
+			    <md-input-container class="md-block">
+			      <label>{{ 'LABEL.PASSWORD_CONFIRM' | translate }}</label>
+			      <input type="password" ng-model="passwordConfirm" />
+			    </md-input-container>
+
+			    <md-input-container class="md-block">
+		          <md-button type="submit" class="md-accent md-raised" ng-click="login()">{{ 'LABEL.CONNEXION' | translate }}</md-button>
+		        </md-input-container>
+  			</div>
+  		</div>
+  	</div>
+
+  	<div class="col-xs-12">
+	  	<h3>Shop information</h3>
+	  	<div class="row">
+  			<div class="col-xs-6">
+	  			<md-input-container class="md-block">
+			    	<label>{{ 'LABEL.SHOP_NAME' | translate }}</label>
+			      	<input type="text" ng-model="user.shop.name" ng-disabled="true" />
+			    </md-input-container>
+
+			    <md-input-container class="md-block">
+			      <label>{{ 'LABEL.SHOP_URL' | translate }}</label>
+			      <input type="text" ng-model="user.shop.url" required />
+			    </md-input-container>
+
+			    <md-input-container class="md-block">
+			      <label>{{ 'LABEL.EMAIL' | translate }}</label>
+			      <input type="email" ng-model="user.shop.email" required />
+			    </md-input-container>
+  			</div>
+  			<div class="col-xs-6">
+  				<md-input-container class="md-block">
+			      <label>{{ 'LABEL.ADDRESS' | translate }}</label>
+			      <input type="text" ng-model="user.shop.address" required />
+			    </md-input-container>
+
+			    <md-input-container class="md-block">
+			      <label>{{ 'LABEL.ZIPCODE' | translate }}</label>
+			      <input type="number" ng-model="user.shop.zipcode" required />
+			    </md-input-container>
+
+			    <md-input-container class="md-block">
+			      <label>{{ 'LABEL.CITY' | translate }}</label>
+			      <input type="text" ng-model="user.shop.city" required />
+			    </md-input-container>
+  			</div>
+  		</div>
+  	</div>
+</div>

@@ -24,6 +24,15 @@
     </md-input-container>
 
     <md-input-container>
+      <label>Catégories</label>
+      <md-select ng-model="search.categories">
+        <md-option ng-repeat="category in categories" ng-value="category.categoryRef">
+          {{ category.name }}
+        </md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container>
       <md-button class="md-raised md-primary" ng-click="searchProducts()">Rechercher</md-button>
     </md-input-container>
   </div>
@@ -52,7 +61,6 @@
           </md-card-header-text>
         </md-card-header>
         <div class="md-card-image">
-          <!-- <img ng-src="/assets/images/produit-1.jpg" alt="Washed Out" ng-if="product.images.length == 0"> -->
           <img ng-src="{{ product.image }}" alt="Washed Out">
           <span class="label-price">{{ product.quantity }} Pièces</span>
         </div>
@@ -61,11 +69,6 @@
             <span class="md-headline">{{ product.name }}</span>
           </md-card-title-text>
         </md-card-title>
-        <!-- <md-card-content>
-          <p>
-            {{ product.description | limitTo:150 }} ...
-          </p>
-        </md-card-content> -->
       </md-card>
     </md-list-item>
   </div>

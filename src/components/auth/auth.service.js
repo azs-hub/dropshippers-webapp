@@ -22,7 +22,7 @@ angular.module('auth.service', [])
           return $http({
             method: 'POST',
             url: BASE_URL_API + 'login/signin',
-            params: {
+            data: {
               username: datas.username,
               password: datas.password
             }

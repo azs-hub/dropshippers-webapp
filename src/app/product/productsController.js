@@ -7,6 +7,7 @@ angular.module('dropshippers')
 				
 			console.log('categoryList : ', categoryList);
 			
+			$scope.categories = categoryList;
 			$scope.products = {};
 			$scope.pagination = {
 				currentPage: 0,
@@ -129,6 +130,6 @@ angular.module('dropshippers')
 		};
 
 		$scope.go = function (productId) {
-			$state.go('detailProduct', {id: productId});
+			$state.go('product.detail', {id: productId});
 		};
 	}]);

@@ -10,7 +10,7 @@ angular.module('category.service', [])
             url: BASE_URL_API + 'front/common/categories/fr-FR'
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);
-              return response;
+              return response.data.categories;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
               return response;
