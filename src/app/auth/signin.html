@@ -7,38 +7,38 @@
     </div>
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2">
+        <form method="post" ng-submit="signin()" name="signinForm">
+          <md-input-container class="md-icon-float md-block">
+            <label>{{ 'LABEL.USERNAME' | translate }}</label>
+            <input name="username" ng-model="user.username" type="text" required />
+          </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <label>{{ 'LABEL.USERNAME' | translate }}</label>
-          <input ng-model="user.username" type="text" ng-required="true">
-        </md-input-container>
+          <md-input-container class="md-block">
+            <label>{{ 'LABEL.EMAIL' | translate }}</label>
+            <input ng-model="user.email" type="email" required />
+          </md-input-container>
 
-        <md-input-container class="md-block">
-          <label>{{ 'LABEL.EMAIL' | translate }}</label>
-          <input ng-model="user.email" type="email" ng-required="true">
-        </md-input-container>
+          <md-input-container class="md-block">
+            <label>{{ 'LABEL.PASSWORD' | translate }}</label>
+            <input ng-model="user.password" type="password" required />
+          </md-input-container>
 
-        <md-input-container class="md-block">
-          <label>{{ 'LABEL.PASSWORD' | translate }}</label>
-          <input ng-model="user.password" type="password" ng-required="true">
-        </md-input-container>
+          <md-input-container class="md-block">
+            <label>{{ 'LABEL.SHOP_NAME' | translate }}</label>
+            <input ng-model="user.shop_name" type="text" ng-required="!user.token">
+          </md-input-container>
 
-        <md-input-container class="md-block">
-          <label>{{ 'LABEL.SHOP_NAME' | translate }}</label>
-          <input ng-model="user.shop_name" type="text"  ng-required="!user.token">
-        </md-input-container>
+          <div class="else">OU</div>
 
-        <div class="else">OU</div>
+          <md-input-container class="md-block">
+            <label>{{ 'LABEL.TOKEN' | translate }}</label>
+            <input ng-model="user.token" type="text" ng-required="!user.shop_name">
+          </md-input-container>
 
-        <md-input-container class="md-block">
-          <label>{{ 'LABEL.TOKEN' | translate }}</label>
-          <input ng-model="user.token" type="text" ng-regquired="!user.shop_name">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <md-button class="md-accent md-raised" type="submit" ng-click="signin()">{{ 'LABEL.CREATE_ACCOUNT' | translate }}</md-button>
-        </md-input-container>
-
+          <md-input-container class="md-block">
+            <md-button class="md-accent md-raised" type="submit" ng-click="save()">{{ 'LABEL.CREATE_ACCOUNT' | translate }}</md-button>
+          </md-input-container>
+        </form>
       </div>
     </div>
 </div>
