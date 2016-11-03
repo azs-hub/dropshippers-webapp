@@ -8,7 +8,7 @@ angular.module("local.config", [])
 
 .constant("FACEBOOK_SDK_VERSION", "v2.6")
 
-.constant("ENV", "dev")
+.constant("ENV", "prod")
 
 .constant("APP_VERSION", "v0.0.8")
 

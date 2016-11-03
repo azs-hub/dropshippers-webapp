@@ -14,7 +14,7 @@ angular.module('product.service', [])
               params: search
             }).then(function successCallback(response) {
               //console.log("successCallback : ", response);
-              return response.data.products;
+              return response.data;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
               return response;

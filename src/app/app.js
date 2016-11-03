@@ -144,12 +144,7 @@ angular.module('dropshippers', [
           }]
         }
       })
-      .state('product', {
-        url: '/product',
-        abstract: true,
-        template: '<ui-view/>'
-      })
-      .state('product.list', {
+      .state('products', {
         url: '/products',
         templateUrl: 'app/product/products.html',
         controller:  'ProductsController',
@@ -167,14 +162,19 @@ angular.module('dropshippers', [
             });
           },
           productList: function(ProductService) {
-            return ProductService.getProducts().then(function(res) {
+            return ProductService.getProducts({maxPerPage: 4}).then(function(res) {
               return res;
             });
           }
         }
       })
+      .state('product', {
+        url: '/product',
+        abstract: true,
+        template: '<ui-view/>'
+      })
       .state('product.detail', {
-        url: '/product/:id',
+        url: '/:id',
         templateUrl: 'app/product/product.html',
         controller:  'ProductController',
         resolve: {
@@ -186,27 +186,27 @@ angular.module('dropshippers', [
               }
             }],
           product: function($stateParams, ProductService) {
-            var product = {
-              "product_ref": 1,
-              "dropshippers_ref": 122,
-              "image": "http://dummyimage.com/188x203.jpg/ff4444/ffffff",
-              "name": "Mat Lam Tam",
-              "price": 588.85,
-              "quantity": 823,
-              "categories": [{
-                  "name": "Kids Cold and Mucus Relief Expectorant",
-                  "id": 1
-                }],
-              "description": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
-              "shop":{
-                  "name": "Riffwire",
-                  "ref": 1
-                }
-            };
-            return product;
-            // return ProductService.getProduct($stateParams.id).then(function(res) {
-            //   return res.data;
-            // });
+            // var product = {
+            //   "product_ref": 1,
+            //   "dropshippers_ref": 122,
+            //   "image": "http://dummyimage.com/188x203.jpg/ff4444/ffffff",
+            //   "name": "Mat Lam Tam",
+            //   "price": 588.85,
+            //   "quantity": 823,
+            //   "categories": [{
+            //       "name": "Kids Cold and Mucus Relief Expectorant",
+            //       "id": 1
+            //     }],
+            //   "description": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
+            //   "shop":{
+            //       "name": "Riffwire",
+            //       "ref": 1
+            //     }
+            // };
+            // return product;
+            return ProductService.getProduct($stateParams.id).then(function(res) {
+              return res.data.product;
+            });
           }
         }
       })

@@ -1,6 +1,15 @@
 'use strict';
 
 angular.module('dropshippers')
+	.filter('startFrom', function() {
+	    return function(input, start) {
+	    	console.log('input : ', input, ' start : ', start);
+	        start = +start; //parse to int
+	        return input.slice(start);
+	    }
+	});
+
+angular.module('dropshippers')
 	.controller('ProductsController',
 		['$scope', '$state', '$auth', 'ProductService', 'PropositionService', 'ProfileModel', 'categoryList', 'productList',
 		function ($scope, $state, $auth, ProductService, PropositionService, ProfileModel, categoryList, productList) {
@@ -8,15 +17,44 @@ angular.module('dropshippers')
 			console.log('categoryList : ', categoryList);
 			
 			$scope.categories = categoryList;
-			$scope.products = {};
-			$scope.pagination = {
-				currentPage: 0,
-				total: 0,
-				limitProduct: 3
+			$scope.products = productList.products;
+			$scope.pagination = productList.pagination; //{currentPage: 1, firstPage: 1, lastPage: 5, nextPage: 2, nombre_de_page: 5, nombre_de_resultats: 5};
+			$scope.search = {
+				name: null,
+				minPrice: null,
+				maxPrice: null,
+				categories: null,
+				numeroPage: productList.pagination.currentPage,
+				maxPerPage: 4
 			};
 			$scope.user = ProfileModel;
 			ProfileModel.loadUser();
+			
+			// $scope.pagination = {
+			// 	currentPage: 0,
+			// 	total: 0,
+			// 	limitProduct: 3
+			// };
 
+			
+			$scope.searchProducts = function () {
+				ProductService.getProducts(_.omitBy($scope.search, _.isNull || _.isEmpty)).then(function(res) {
+					$scope.products = res.products;
+					$scope.pagination = res.pagination;
+	        		return res;
+	      		});
+			};
+
+			$scope.$watch('pagination.currentPage', function (file) {
+				$scope.search.numeroPage = $scope.pagination.currentPage;
+		        $scope.searchProducts();
+		    });
+
+			$scope.go = function (productId) {
+				$state.go('product.detail', {id: productId});
+			};
+
+			/*
 			$scope.products = [
 			{"product_ref":1,"image":"http://dummyimage.com/226x229.png/dddddd/000000","name":"Konklux","price":215.29,"shopName":"Quatz","shopRef":1,"quantity":326,"categories":[{"name":"Inflammation OTC","id":1},{"name":"Povidone-Iodine Prep Pad","id":2},{"name":"MiraLAX","id":3},{"name":"Exchange Select Sunscreen","id":4},{"name":"Soothing Bath Treatment","id":5}]},
 			{"product_ref":2,"image":"http://dummyimage.com/161x177.bmp/cc0000/ffffff","name":"Latlux","price":45.59,"shopName":"Photobug","shopRef":2,"quantity":124,"categories":[{"name":"MDSolarSciences SPF40 Mineral Screen","id":1},{"name":"Ery","id":2},{"name":"Antifungal","id":3},{"name":"Tretinoin","id":4}]},
@@ -118,18 +156,7 @@ angular.module('dropshippers')
 			{"product_ref":98,"image":"http://dummyimage.com/141x114.jpg/5fa2dd/ffffff","name":"Fix San","price":337.14,"shopName":"Digitube","shopRef":98,"quantity":131,"categories":[{"name":"OXYGEN","id":1}]},
 			{"product_ref":99,"image":"http://dummyimage.com/103x154.bmp/ff4444/ffffff","name":"Konklux","price":273.82,"shopName":"Browsecat","shopRef":99,"quantity":824,"categories":[{"name":"KROGER SPF 4 TANNING OIL","id":1},{"name":"Niaspan","id":2},{"name":"Antiseptic","id":3},{"name":"Dologen 325","id":4}]
 		},
-		{"product_ref":100,"image":"http://dummyimage.com/239x108.bmp/cc0000/ffffff","name":"Vagram","price":383.63,"shopName":"Ntag","shopRef":100,"quantity":478,"categories":[{"name":"Allergy Complete Relief","id":1}]}];
+		{"product_ref":100,"image":"http://dummyimage.com/239x108.bmp/cc0000/ffffff","name":"Vagram","price":383.63,"shopName":"Ntag","shopRef":100,"quantity":478,"categories":[{"name":"Allergy Complete Relief","id":1}]}]; 
+		*/
 
-		angular.extend($scope.products, productList);
-			
-		$scope.searchProducts = function () {
-			console.log('searchProducts : ', _.omitBy($scope.search, _.isNull || _.isEmpty));
-			return ProductService.getProducts(_.omitBy($scope.search, _.isNull || _.isEmpty)).then(function(res) {
-        return res;
-      });
-		};
-
-		$scope.go = function (productId) {
-			$state.go('product.detail', {id: productId});
-		};
 	}]);

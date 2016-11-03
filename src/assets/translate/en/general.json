@@ -2,6 +2,7 @@
   "HTTP_401": "Authentication error, please sign in again.",
   "HTTP_403": "Service unavailable. Please retry later",
   "CODE": {
+    "500": "Internal Server Error",
   	"10001": "Invalid credentials"
   },
   "LABEL": {

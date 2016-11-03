@@ -33,6 +33,16 @@
     </md-input-container>
 
     <md-input-container>
+      <label>maxPerPage</label>
+      <md-select ng-model="search.maxPerPage">
+        <md-option ng-value="4">4</md-option>
+        <md-option ng-value="10">10</md-option>
+        <md-option ng-value="30">30</md-option>
+        <md-option ng-value="60">60</md-option>
+      </md-select>
+    </md-input-container>
+
+    <md-input-container>
       <md-button class="md-raised md-primary" ng-click="searchProducts()">Rechercher</md-button>
     </md-input-container>
   </div>
@@ -72,11 +82,19 @@
       </md-card>
     </md-list-item>
   </div>
-  <!-- <paging
-      page="currentPage" 
-      page-size="pageSize" 
-      total="total"
-      pg-href="#GotoPage-{page}"
-      paging-action="paginateProducts(currentpage, pageSize, total)">
-    </paging>   -->
+</div>
+
+
+<div clas="row">
+  <div clas="col-xs-12">
+    <button ng-disabled="!pagination" ng-click="pagination.currentPage=pagination.currentPage-1">
+        Previous
+    </button>
+
+    {{pagination.currentPage}}/{{pagination.nombre_de_page}}
+
+    <button ng-disabled="!pagination.currentPage" ng-click="pagination.currentPage=pagination.currentPage+1">
+        Next
+    </button>
+  </div>
 </div>
