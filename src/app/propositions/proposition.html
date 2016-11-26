@@ -1,5 +1,6 @@
-<div class="row product">
+<div class="row proposition">
   <div class="col-xs-12">
+    <div class="proposition-title">Partenariats</div>
     <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
       <tr ng-repeat="row in $data">
         <td data-title="'name'">{{ row.product.name }}</td>
@@ -8,9 +9,7 @@
         <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
         <td data-title="'isSendDirectly'">{{ row.isSendDirectly }}</td>
         <td data-title="'deliveryArea'">
-
           <span ng-repeat="country in row.deliveryArea">{{ country.name }}</span>
-
         </td>
         <td data-title="'show'"><a ui-sref="product.detail({id: row.product.productRef})">detail</a></td>
       </tr>

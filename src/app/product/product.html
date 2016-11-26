@@ -1,54 +1,58 @@
 <!-- Product detail -->
-<div class="row">
-  <div class="col-xs-3">
-    <md-card class="product-list" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}">
-      <a class="product-hover"></a>
-      <md-card-header>
-        <md-card-avatar>
-          <!-- <img src="img/logo.svg"/> -->
-        </md-card-avatar>
-        <md-card-header-text>
-          <span class="md-title">{{ product.shop.name }}</span>
-          <span class="md-subhead">{{ product.categories[0].name }}</span>
-        </md-card-header-text>
-      </md-card-header>
-      <div class="md-card-image">
-        <img ng-src="{{ product.image }}" alt="Washed Out">
-      </div>
-      <md-card-title>
-      </md-card-title>
-      <md-card-content>
-      </md-card-content>
-    </md-card>
-  </div>
-
-  <div class="col-xs-9">
-    <h2>{{ product.name }}</h2>
-    <p>{{ product.description }}</p>
-  </div>
-</div>
-
-<!-- Partners forms -->
-<div class="row">
-  <div class="col-xs-12" ng-if="user.shop.name != product.shopName || waitingProp.RequestRef">
-    <md-input-container>
-      <input type="hidden" ng-model="propositionMsg.product_reference" value="{{ product.dropshippers_ref }}" />
-    </md-input-container>
-
-    <div class="row">
-      <div class="col-xs-4">
-        <md-input-container>
-          <label>Prix</label>
-          <input type="number" ng-model="propositionMsg.price" step="0.01" max="{{ product.price }}" />
-        </md-input-container>
-      </div>
-      <div class="col-xs-8">
-        <md-input-container class="md-block">
-          <label>Message</label>
-          <textarea ng-model="propositionMsg.message" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-        </md-input-container>
-      </div>
+<div class="row product">
+  <div class="row">
+    <div class="product-title">Demande de partenariat</div>
+    <div class="product-subtitle">Détail de commande d'un produit</div>
+    <div class="col-xs-3">
+      <md-card class="product-list" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}">
+        <a class="product-hover"></a>
+        <md-card-header>
+          <md-card-avatar>
+            <!-- <img src="img/logo.svg"/> -->
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{ product.shop.name }}</span>
+            <span class="md-subhead">{{ product.categories[0].name }}</span>
+          </md-card-header-text>
+        </md-card-header>
+        <div class="md-card-image">
+          <img ng-src="{{ product.image }}" alt="Washed Out">
+        </div>
+        <md-card-title>
+        </md-card-title>
+        <md-card-content>
+        </md-card-content>
+      </md-card>
     </div>
+
+    <div class="col-xs-9">
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description }}</p>
+    </div>
+  </div>
+
+  <!-- Partners forms -->
+  <div class="row partners-form">
+    <div class="col-xs-12" ng-if="user.shop.name != product.shopName || waitingProp.RequestRef">
+      <div class="partners-form-title">Formulaire de demande de partenariat</div>
+      <div class="partners-form-subtitle">Veuillez utiliser ce formulaire afin de négocier une demande de partenariat</div>
+      <md-input-container>
+        <input type="hidden" ng-model="propositionMsg.product_reference" value="{{ product.dropshippers_ref }}" />
+      </md-input-container>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <md-input-container>
+            <label>Prix</label>
+            <input type="number" ng-model="propositionMsg.price" step="0.01" max="{{ product.price }}" />
+          </md-input-container>
+        </div>
+        <div class="col-xs-8">
+          <md-input-container class="md-block">
+            <label>Message</label>
+            <textarea ng-model="propositionMsg.message" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+          </md-input-container>
+        </div>
 
     <div class="row">
       <div class="col-xs-4">
@@ -86,58 +90,60 @@
       </div>
     </div>
 
-
     <md-input-container class="md-block">
-      <button ng-click="props()">
+      <button class="prop" ng-click="props()">
         Proposition
       </button>
     </md-input-container>
-  </div>
-</div>
+      </div>
+    </div>
 
-<!-- Si il n'y a pas de proposition en cours -->
-<table ng-table="tablePropositions" class="table table-condensed table-bordered table-striped" ng-if="!waitingProp">
-  <tr ng-repeat="row in $data">
-    <td data-title="'name'">{{ row.product.name }}</td>
-    <td data-title="'status'">{{ row.status }}</td>
-    <td data-title="'price'" sortable="'price'">{{ row.price }}</td>
-    <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
-    <td data-title="'isSendDirectly'">{{ row.isSendDirectly }}</td>
-    <td data-title="'deliveryArea'">
-
-      <span ng-repeat="country in row.deliveryArea">{{ country.name }}</span>
-
-    </td>
-    <td data-title="'show'"><a ui-sref="product.detail({id: row.product.productRef})">detail</a></td>
-  </tr>
-</table>
-
-<!-- Liste des messages de la proposition en cours -->
-<div class="row">
-  <div class="col-xs-12">
-    <!-- <button ng-click="accept_props(tableParams.data[0].RequestRef)" ng-if="user.currentShop.name != tableParams.data[0].shopHost.name">
-        Accepter la proposition
-    </button> -->
-    <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
-      <tr ng-repeat="row in $data track by $index">
-        <td data-title="'date'" sortable="'created_at'">{{ row.date | date:'medium'}}</td>
-        <td data-title="'from'">{{ row.from.name }}</td>
-        <td data-title="'message'">{{ row.message }}</td>
-        <td data-title="'price'">{{ row.price }}</td>
+    <!-- Si il n'y a pas de proposition en cours -->
+    <table ng-table="tablePropositions" class="table table-condensed table-bordered table-striped" ng-if="!waitingProp">
+      <tr ng-repeat="row in $data">
+        <td data-title="'name'">{{ row.product.name }}</td>
+        <td data-title="'status'">{{ row.status }}</td>
+        <td data-title="'price'" sortable="'price'">{{ row.price }}</td>
+        <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
         <td data-title="'isSendDirectly'">{{ row.isSendDirectly }}</td>
-        <td data-title="'isWhiteMark'">{{ row.isWhiteMark }}</td>
         <td data-title="'deliveryArea'">
 
           <span ng-repeat="country in row.deliveryArea">{{ country.name }}</span>
 
         </td>
-        <td data-title="'action'">
-          <button ng-show="row.from.name != user.shop.name"
-            ng-click="accept_props()">
-        Accepter la proposition
-          </button>
-        </td>
+        <td data-title="'show'"><a ui-sref="product.detail({id: row.product.productRef})">detail</a></td>
       </tr>
     </table>
+  </div>
+
+  <!-- Liste des messages de la proposition en cours -->
+  <div class="row exchange">
+    <div class="exchange-title">Echanges du partenariat</div>
+    <div class="col-xs-12">
+      <!-- <button ng-click="accept_props(tableParams.data[0].RequestRef)" ng-if="user.currentShop.name != tableParams.data[0].shopHost.name">
+           Accepter la proposition
+           </button> -->
+      <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+        <tr ng-repeat="row in $data track by $index">
+          <td data-title="'date'" sortable="'created_at'">{{ row.date | date:'medium'}}</td>
+          <td data-title="'from'">{{ row.from.name }}</td>
+          <td data-title="'message'">{{ row.message }}</td>
+          <td data-title="'price'">{{ row.price }}</td>
+          <td data-title="'isSendDirectly'">{{ row.isSendDirectly }}</td>
+          <td data-title="'isWhiteMark'">{{ row.isWhiteMark }}</td>
+          <td data-title="'deliveryArea'">
+
+            <span ng-repeat="country in row.deliveryArea">{{ country.name }}</span>
+
+          </td>
+          <td data-title="'action'">
+            <button ng-show="row.from.name != user.shop.name"
+                    ng-click="accept_props()">
+              Accepter la proposition
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
