@@ -1,6 +1,6 @@
 <!-- Product detail -->
 <div class="row product">
-  <div class="row">
+  <div class="row detail">
     <div class="product-title">Demande de partenariat</div>
     <div class="product-subtitle">Détail de commande d'un produit</div>
     <div class="col-xs-3">
@@ -125,20 +125,19 @@
            </button> -->
       <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
         <tr ng-repeat="row in $data track by $index">
-          <td data-title="'date'" sortable="'created_at'">{{ row.date | date:'medium'}}</td>
-          <td data-title="'from'">{{ row.from.name }}</td>
-          <td data-title="'message'">{{ row.message }}</td>
-          <td data-title="'price'">{{ row.price }}</td>
-          <td data-title="'isSendDirectly'">{{ row.isSendDirectly }}</td>
-          <td data-title="'isWhiteMark'">{{ row.isWhiteMark }}</td>
-          <td data-title="'deliveryArea'">
-
+          <td data-title="'Date'" sortable="'created_at'">{{ row.date | date:'medium'}}</td>
+          <td data-title="'De'">{{ row.from.name }}</td>
+          <td data-title="'Message'">{{ row.message }}</td>
+          <td data-title="'Prix'">{{ row.price }}</td>
+          <td data-title="'Envoi direct'">{{ row.isSendDirectly }}</td>
+          <td data-title="'Marque blanche'">{{ row.isWhiteMark }}</td>
+          <td data-title="'Zone'">
             <span ng-repeat="country in row.deliveryArea">{{ country.name }}</span>
-
           </td>
-          <td data-title="'action'">
+          <td data-title="">
             <button ng-show="row.from.name != user.shop.name"
-                    ng-click="accept_props()">
+                    ng-click="accept_props()"
+                    class="prop">
               Accepter la proposition
             </button>
           </td>
