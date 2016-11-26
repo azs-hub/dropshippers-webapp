@@ -6,7 +6,6 @@ angular.module('dropshippers')
       function ($scope, $state, $mdToast, ProfileModel) {
         $scope.user = ProfileModel;
         ProfileModel.loadUser();
-           
       }
     ]
   );

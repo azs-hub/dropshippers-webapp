@@ -17,7 +17,8 @@ angular.module('profile.model', ['profile.service'])
               self.shop = res.data.currentUser.shop;
 
               ProductService.getMyProducts().then(function(res) {
-                self.products = res.local;
+                self.products = res;
+                console.log(res);
               });
             }
           });

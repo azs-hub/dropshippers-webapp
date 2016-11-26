@@ -187,7 +187,7 @@ angular.module('dropshippers', [
             }],
           propositions: function($stateParams, PropositionService) {
             return PropositionService.getProposition($stateParams.id).then(function (res) {
-              return res.data;
+              return res;
             });
           },
           product: function($stateParams, ProductService) {

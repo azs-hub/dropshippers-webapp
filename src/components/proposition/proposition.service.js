@@ -23,10 +23,11 @@ angular.module('proposition.service', [])
           $log.debug('Proposition:getProposition', id);
           return $http({
             method: 'GET',
-            url: BASE_URL_API + 'front/user/propositions/' + id + '/messages'
+            url: BASE_URL_API + 'front/user/propositions', // + id + '/messages',
+            params: {productRef: id}
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);
-              return response;
+              return response.data.propositions;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
               return response;
