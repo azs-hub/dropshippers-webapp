@@ -11,16 +11,26 @@
           <md-input-container class="md-icon-float md-block">
             <label>{{ 'LABEL.USERNAME' | translate }}</label>
             <input name="username" ng-model="user.username" type="text" required />
+            <div ng-messages="signinForm.username.$error">
+              <div ng-message="required">{{ 'USERNAME_REQUIRED' | translate }}</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-block">
             <label>{{ 'LABEL.EMAIL' | translate }}</label>
             <input ng-model="user.email" type="email" required />
+            <div ng-messages="signinForm.email.$error" multiple md-auto-hide="true">
+              <div ng-message="required">{{ 'EMAIL_REQUIRED' | translate }}</div>
+              <div ng-message="pattern">{{ 'EMAIL_FORMAT' | translate }}</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-block">
             <label>{{ 'LABEL.PASSWORD' | translate }}</label>
             <input ng-model="user.password" type="password" required />
+            <div ng-messages="signinForm.password.$error">
+              <div ng-message="required">{{ 'USERNAME_REQUIRED' | translate }}</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-block">

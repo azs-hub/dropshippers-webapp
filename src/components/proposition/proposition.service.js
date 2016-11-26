@@ -13,7 +13,7 @@ angular.module('proposition.service', [])
             url: BASE_URL_API + 'front/user/propositions',
               }).then(function successCallback(response) {
               console.log("successCallback : ", response);
-              return response;
+              return response.data;
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
               return response;
@@ -23,10 +23,7 @@ angular.module('proposition.service', [])
           $log.debug('Proposition:getProposition', id);
           return $http({
             method: 'GET',
-            url: BASE_URL_API + 'front/user/propositions',
-            params: {
-              productRef: id
-            }
+            url: BASE_URL_API + 'front/user/propositions/' + id + '/messages'
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);
               return response;
@@ -56,6 +53,19 @@ angular.module('proposition.service', [])
             method: 'PATCH',
             url: BASE_URL_API + 'front/user/propositions/' + id,
             data: data
+          }).then(function successCallback(response) {
+              console.log("successCallback : ", response);
+              return response;
+            }, function errorCallback(response) {
+              console.log("errorCallback : ", response);
+              return response;
+            });
+        },
+        getZones: function() {
+          $log.debug('Proposition:getZones');
+          return $http({
+            method: 'GET',
+            url: BASE_URL_API + 'front/common/zones'
           }).then(function successCallback(response) {
               console.log("successCallback : ", response);
               return response;

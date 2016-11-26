@@ -2,8 +2,8 @@
 
 angular.module('dropshippers')
   .controller('ProductController',
-              ['$scope', '$auth', 'product', 'PropositionService', 'ProfileModel', 'NgTableParams', '$filter', '$mdToast',
-               function ($scope, $auth, product, PropositionService, ProfileModel, NgTableParams, $filter, $mdToast) {
+              ['$scope', '$auth', 'product', 'PropositionService', 'ProfileModel', 'NgTableParams', '$filter', '$mdToast', 'propositions', 'zoneList',
+               function ($scope, $auth, product, PropositionService, ProfileModel, NgTableParams, $filter, $mdToast, propositions, zoneList) {
 
         $scope.product = product;
         var proposition = {
@@ -12,6 +12,16 @@ angular.module('dropshippers')
           deliveryArea: 'all'
         };
         $scope.proposition = {};
+        $scope.propositions = propositions;
+        $scope.zones = zoneList.zones;
+        // console.log('zones', _.values($scope.zones));
+        
+        // console.log('zones : ', $scope.zones);
+        $scope.user = ProfileModel;
+        ProfileModel.loadUser();
+
+        console.log('propositions = ', propositions);
+        console.log('user = ', $scope.user);
         $scope.propositions = {
           "created_at": "3/22/2016",
           "status": "accepted",
@@ -353,8 +363,7 @@ angular.module('dropshippers')
         };
 
         $scope.lastProposition = _.sortBy($scope.propositions.messages, ['created_at'])[$scope.propositions.messages.length-1];
-        $scope.user = ProfileModel;
-        ProfileModel.loadUser();
+        
 
         $scope.accept_props = function (id) {
           var data = [{ "op": "replace", "path" : "/status", "value" : "accepted"}];
@@ -371,6 +380,52 @@ angular.module('dropshippers')
         $scope.props = function () {
             angular.extend(proposition, $scope.proposition);
             PropositionService.addProposition(proposition).then(function(res) {
+              var props = {
+                from: [{
+                  name: $scope.user.username,
+                  id: $scope.user.username
+                }]
+              };
+             // "from": [
+             //    {
+             //      "name": "Skyndu",
+             //      "id": 1
+             //    }
+             //  ],
+             //  "created_at": "6/13/2016",
+             //  "isSendDirectly": false,
+             //  "isWhiteMark": false,
+             //  "deliveryArea": [
+             //    {
+             //      "id": 1,
+             //      "name": "Indonesia"
+             //    },
+             //    {
+             //      "id": 2,
+             //      "name": "Russia"
+             //    },
+             //    {
+             //      "id": 3,
+             //      "name": "Poland"
+             //    },
+             //    {
+             //      "id": 4,
+             //      "name": "China"
+             //    },
+             //    {
+             //      "id": 5,
+             //      "name": "Russia"
+             //    }
+             //  ],
+             //  "content": "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+             //  "price": "175.94",
+             //  "user": [
+             //    {
+             //      "name": "Willie",
+             //      "id": 1
+             //    }
+             //  ],
+             //  "propositionRef": "1aab5cba-cb27-42ff-8a15-1980f3af6ac4" 
             if (res.status == 200) {
               $scope.propositions.messages.push(proposition);
               $scope.proposition = {};
