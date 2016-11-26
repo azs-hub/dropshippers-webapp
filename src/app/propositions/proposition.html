@@ -3,15 +3,15 @@
     <div class="proposition-title">Partenariats</div>
     <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
       <tr ng-repeat="row in $data">
-        <td data-title="'name'">{{ row.product.name }}</td>
-        <td data-title="'status'">{{ row.status }}</td>
-        <td data-title="'price'" sortable="'price'">{{ row.price }}</td>
-        <td data-title="'isWhiteMark'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
-        <td data-title="'isSendDirectly'">{{ row.isSendDirectly }}</td>
-        <td data-title="'deliveryArea'">
+        <td data-title="'Produit'">{{ row.product.name }}</td>
+        <td data-title="'Status'">{{ row.status }}</td>
+        <td data-title="'Prix'" sortable="'price'">{{ row.price }}</td>
+        <td data-title="'Marque blanche'" sortable="'isWhiteMark'">{{ row.isWhiteMark }}</td>
+        <td data-title="'Envoi direct'">{{ row.isSendDirectly }}</td>
+        <td data-title="'Zone'">
           <span ng-repeat="country in row.deliveryArea">{{ country.name }}</span>
         </td>
-        <td data-title="'show'"><a ui-sref="product.detail({id: row.product.productRef})">detail</a></td>
+        <td data-title=""><a ui-sref="product.detail({id: row.product.productRef})">detail</a></td>
       </tr>
     </table>
   </div>
