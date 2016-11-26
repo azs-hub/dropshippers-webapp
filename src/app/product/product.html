@@ -30,15 +30,10 @@
 
 <!-- Partners forms -->
 <div class="row">
-  <div class="col-xs-12" ng-if="user.shop.name != product.shopName || waitingProp.dropshippersRef">
+  <div class="col-xs-12" ng-if="user.shop.name != product.shopName || waitingProp.RequestRef">
     <md-input-container>
       <input type="hidden" ng-model="propositionMsg.product_reference" value="{{ product.dropshippers_ref }}" />
     </md-input-container>
-
-    <md-input-container ng-if="waitingProp">
-      <input type="hidden" ng-model="propositionMsg.productDropshippersRef" value="{{ waitingProp.dropshippersRef }}" />
-    </md-input-container>
-
 
     <div class="row">
       <div class="col-xs-4">

@@ -6,11 +6,7 @@ angular.module('dropshippers')
                function ($scope, $auth, product, PropositionService, ProfileModel, NgTableParams, $filter, $mdToast, propositions, zoneList) {
 
         $scope.product = product;
-        var proposition = {
-          product_reference: product.dropshippers_ref,
-          quantity: 1,
-          deliveryArea: 'all'
-        };
+        // var proposition = {};
         $scope.propositionMsg = {};
         // je trie les props par date
         $scope.propositions = _.reverse(_.sortBy(propositions, ['created_at']));
@@ -379,36 +375,20 @@ angular.module('dropshippers')
         }
 
         $scope.props = function () {
-            angular.extend(proposition, $scope.propositionMsg);
-            if (!proposition.productDropshippersRef) {
+            var proposition = $scope.propositionMsg;
+            if (!$scope.waitingProp) {
               PropositionService.addProposition(proposition).then(function(res) {
                 console.log('res : ', res);
-                // var props = {
-                //   from: [{
-                //     name: $scope.user.username,
-                //     id: $scope.user.username
-                //   }]
-                // };
-                // if (res.status == 200) {
-                //   $scope.propositions.messages.push(proposition);
-                //   $scope.proposition = {};
-                //   resetProp();
-                //     $scope.tableParams.reload();
-                //     $mdToast.show(
-                //       $mdToast.simple()
-                //         .textContent('Proposition bien envoyé')
-                //     );
-                // } else {
-                //     $mdToast.show(
-                //       $mdToast.simple()
-                //         .textContent('Erreur')
-                //         .hideDelay(3000)
-                //     );
-                // }
+              });
+            } else {
+              delete proposition.deliveryArea;
+              proposition.isSendDirectly = (proposition.isSendDirectly == "true") ? true : false;
+              proposition.isWhiteMark = (proposition.isWhiteMark == "true") ? true : false;
 
-            });
-              
-          }
+              PropositionService.addMessage($scope.waitingProp.RequestRef, proposition).then(function(res) {
+                console.log('res : ', res);
+              });
+            }
         };
 
         $scope.tablePropositions = new NgTableParams({

@@ -27,7 +27,7 @@ angular.module('profile.service', [])
             url: BASE_URL_API + 'front/user'
           }).then(function successCallback(response) {
               //console.log("successCallback : ", response);
-              return response;
+              return response.data[0];
             }, function errorCallback(response) {
               console.log("errorCallback : ", response);
               return response;

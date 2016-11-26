@@ -12,15 +12,15 @@ angular.module('profile.model', ['profile.service'])
       this.loadUser = function (userId) {
         if (!userId && !self.user) {
           ProfileService.getUser().then(function (res) {
-            if (res.status == 200) {
-              self.user = res.data.currentUser.user;
-              self.shop = res.data.currentUser.shop;
+            // if (res.status == 200) {
+              self.user = res.user;
+              self.shop = res.shop;
 
               ProductService.getMyProducts().then(function(res) {
                 self.products = res;
                 console.log(res);
               });
-            }
+            // }
           });
         }
       };

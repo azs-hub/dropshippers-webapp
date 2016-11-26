@@ -48,6 +48,21 @@ angular.module('proposition.service', [])
               return response;
             });
         },
+        addMessage: function(id, values) {
+          $log.debug('Proposition:Message', values);
+          console.log(BASE_URL_API);
+          return $http({
+            method: 'PUT',
+            url: BASE_URL_API + 'front/user/propositions/' + id + '/message',
+            data: values
+          }).then(function successCallback(response) {
+              console.log("successCallback : ", response);
+              return response;
+            }, function errorCallback(response) {
+              console.log("errorCallback : ", response);
+              return response;
+            });
+        },
         active: function(id, data) {
           $log.debug('Proposition:active', id, data);
           return $http({
