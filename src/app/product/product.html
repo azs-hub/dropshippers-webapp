@@ -76,12 +76,11 @@
             </md-optgroup>
           </md-select>
         </md-input-container>
-        {{selectedZone}}
-        <md-input-container>
+        <md-input-container ng-show="selectedZone">
           <label>Contry</label>
-          <md-select ng-model="selectedArea" multiple>
-            <md-optgroup label="{{key}}" ng-repeat="(key, value) in zones | filter {key: selectedZone}">
-              <md-option ng-value="aone.name" ng-repeat="zone in zones[key]">{{zone.name}}</md-option>
+          <md-select ng-model="proposition.deliveryArea" multiple>
+            <md-optgroup label="{{value}}" ng-repeat="(key, value) in selectedZone">
+              <md-option ng-value="zone.countryRef" ng-repeat="zone in zones[value]" selected>{{zone.name}}</md-option>
             </md-optgroup>
           </md-select>
         </md-input-container>
