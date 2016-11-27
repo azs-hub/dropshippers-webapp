@@ -1,7 +1,7 @@
 <!-- Partners forms -->
 <div class="row">
   	<div class="col-xs-12">
-	  	<h3>Your personnal information</h3>
+	  	<h3>Informations personnelles</h3>
 	  	<div class="row">
   			<div class="col-xs-6">
 	  			<md-input-container class="md-block">
@@ -27,14 +27,14 @@
 			    </md-input-container>
 
 			    <md-input-container class="md-block">
-		          <md-button type="submit" class="md-accent md-raised" ng-click="login()">{{ 'LABEL.CONNEXION' | translate }}</md-button>
+		          
 		        </md-input-container>
   			</div>
   		</div>
   	</div>
 
   	<div class="col-xs-12">
-	  	<h3>Shop information</h3>
+	  	<h3>Information de la boutique</h3>
 	  	<div class="row">
   			<div class="col-xs-6">
 	  			<md-input-container class="md-block">
@@ -74,7 +74,7 @@
 
 <div class="row">
 	<div class="col-xs-12">
-		<h3>My products</h3>
+		<h3>Mes produits</h3>
 	</div>
   <div class="col-xs-3" ng-repeat="product in user.products track by $index">
     <md-list-item class="product-list-item" ng-click="go(product.dropshippers_ref)">
