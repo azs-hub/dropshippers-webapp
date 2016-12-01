@@ -5,7 +5,7 @@ angular.module('auth.service', [])
       return {
         register: function(datas) {
           $log.debug('Auth:register', datas);
-          $http({
+          return $http({
             method: 'POST',
             url: BASE_URL_API + 'login/register',
             data: datas
