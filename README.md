@@ -13,7 +13,7 @@ Install
 > Lors du **bower install** il va surement vous proposer de choisir la version de certains packages via ce message:
 > - Unable to find a suitable version for angular, please choose one by typing one of the numbers below, voir avec le lead front pour les bon choix, à default choisir les versions les plus recentes
 
-Install
+Launch
 -------------
 
-- npm gulp
+- gulp
