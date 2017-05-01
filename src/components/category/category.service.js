@@ -8,13 +8,12 @@ angular.module('category.service', [])
           return $http({
             method: 'GET',
             url: BASE_URL_API + 'front/common/categories/fr-FR'
-          }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
-              return response.data.categories;
-            }, function errorCallback(response) {
-              console.log("errorCallback : ", response);
-              return response;
-            });
+          })
+          .then(function successCallback(response) {
+            return response.data.categories;
+          }, function errorCallback(response) {
+            return response;
+          });
         }
       };
     }

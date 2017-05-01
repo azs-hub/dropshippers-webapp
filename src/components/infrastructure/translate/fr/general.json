@@ -1,6 +1,7 @@
 {
   "HTTP_401": "Erreur d'authentification, veuillez vous reconnecter.",
   "HTTP_403": "Le service est indisponible pour le moment, veuillez réessayer plus tard.",
+  "HTTP_500": "Le service est indisponible, veuillez réessayer plus tard.",
   "CODE": {
   	"10001": "Connexion incorrect"
   },

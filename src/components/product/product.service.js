@@ -12,11 +12,10 @@ angular.module('product.service', [])
               method: 'GET',
               url: BASE_URL_API + 'front/common/products',
               params: search
-            }).then(function successCallback(response) {
-              //console.log("successCallback : ", response);
+            })
+            .then(function successCallback(response) {
               return response.data;
             }, function errorCallback(response) {
-              console.log("errorCallback : ", response);
               return response;
             });
         },

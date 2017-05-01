@@ -9,13 +9,10 @@ angular.module('auth.service', [])
             method: 'POST',
             url: BASE_URL_API + 'login/register',
             data: datas
-          }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
-              return response;
-            }, function errorCallback(response) {
-              console.log("errorCallback : ", response);
-              return response;
-            });
+          })
+          .then(function successCallback(response) {
+            return response;
+          });
         },
         login: function(datas) {
           $log.debug('Auth:login', datas);
@@ -26,13 +23,10 @@ angular.module('auth.service', [])
               username: datas.username,
               password: datas.password
             }
-          }).then(function successCallback(response) {
-              console.log("successCallback : ", response);
-              return response;
-            }, function errorCallback(response) {
-              console.log("errorCallback : ", response);
-              return response;
-            });
+          })
+          .then(function successCallback(response) {
+            return response;
+          });
         }
       };
     }
