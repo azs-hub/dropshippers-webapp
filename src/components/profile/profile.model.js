@@ -12,7 +12,8 @@ angular.module('profile.model', ['profile.service'])
       this.loadUser = function (userId) {
         if (!userId && !self.user) {
           ProfileService.getUser().then(function (res) {
-            // if (res.status == 200) {
+            console.log('loadUser res : ', res );
+            if (res) {
               self.user = res.user;
               self.shop = res.shop;
 
@@ -20,7 +21,7 @@ angular.module('profile.model', ['profile.service'])
                 self.products = res;
                 console.log(res);
               });
-            // }
+            }
           });
         }
       };

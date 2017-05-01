@@ -1,6 +1,7 @@
 {
   "HTTP_401": "Authentication error, please sign in again.",
   "HTTP_403": "Service unavailable. Please retry later",
+  "HTTP_500": "Service unavailable. Please retry later",
   "CODE": {
   	"10001": "Invalid credentials"
   },

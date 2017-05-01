@@ -12,10 +12,9 @@ angular.module('dropshippers')
         
         $scope.signin = function () {
         	console.log($scope.user);
-          AuthService.register($scope.user);
-          /*.then(function (res){
-            console.log("signinController : ", res);
-          });*/
+          AuthService.register($scope.user).then(function (res){
+            console.log("signinController signin : ", res);
+          });
         	/*if (user)
           	$state.go('dashboard');*/
         };   

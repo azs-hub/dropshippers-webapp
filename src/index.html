@@ -23,7 +23,8 @@
   <!-- endbuild -->
 
 </head>
-<body x-ng-app="dropshippers">
+<body x-ng-app="dropshippers" ng-controller="GeneralController">
+  <md-progress-linear md-mode="query" ng-show="loaderProcess"></md-progress-linear>
   <div class="row">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1">
