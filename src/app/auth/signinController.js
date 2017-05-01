@@ -9,15 +9,17 @@ angular.module('dropshippers')
         $scope.go = function () {
           $state.go('home');
         };
-        
+
         $scope.signin = function () {
-        	console.log($scope.user);
-          AuthService.register($scope.user).then(function (res){
-            console.log("signinController signin : ", res);
-          });
-        	/*if (user)
-          	$state.go('dashboard');*/
-        };   
+            AuthService.register($scope.user)
+                .then(function (res) {
+                    console.log(res);
+                    if (res.status == 200)
+                    {
+                        $state.go('login');
+                    }
+                });
+        };
       }
     ]
   );
