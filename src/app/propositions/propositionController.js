@@ -18,7 +18,6 @@ angular.module('dropshippers')
             //if (res.status == 200)
 
           });
-          console.log("hey marc");
         };
 
         var proposition = {
