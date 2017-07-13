@@ -16,11 +16,12 @@ angular.module('profile.model', ['profile.service'])
             if (res) {
               self.user = res.user;
               self.shop = res.shop;
+              self.products = res.product.local || null;
 
-              ProductService.getMyProducts().then(function(res) {
+              /*ProductService.getMyProducts().then(function(res) {
                 self.products = res;
                 console.log(res);
-              });
+              });*/
             }
           });
         }
